@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Settings.Audio;
+using Static_Classes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +18,9 @@ namespace Player
         // [SerializeField] private AudioSource run;
 
         [SerializeField] private float distanceToGround = 1.1f;
+        [SerializeField] private float interactDistance = 1f;
+
+        [SerializeField] private GameObject inputLock;
         
         private const float Gravity = -9.81f;
 
@@ -23,16 +28,36 @@ namespace Player
         private Vector3 _velocity;
         private Transform _cameraTransform;
 
-        private InputAction _moveAction;
-        private InputAction _lookAction;
-        private InputAction _jumpAction;
-        private InputAction _sprintAction;
+        #region InputActions
 
+            private InputAction _moveAction;
+            private InputAction _lookAction;
+            private InputAction _jumpAction;
+            private InputAction _sprintAction;
+            private InputAction _interactAction;
+            private InputAction _closeAction;
+                
+        #endregion
+        
         private float _rotationX;
         private float _moveSpeed;
 
         private bool _grounded = true;
+
+        private Camera _mainCamera;
+
+        private bool _canInteractWithChest = true;
         
+        private void OnEnable()
+        {
+            GameEvents.ChestOpened += ChestOpened;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.ChestOpened -= ChestOpened;
+        }
+
         private void Start()
         {
             if (PlayerPrefs.HasKey("Sensitivity"))
@@ -42,18 +67,64 @@ namespace Player
             
             _characterController = GetComponent<CharacterController>();
 
-            _cameraTransform = Camera.main.transform;
+            _mainCamera = Camera.main;
+            _cameraTransform = _mainCamera.transform;
 
             _moveAction = InputSystem.actions.FindAction("Move");
             _lookAction = InputSystem.actions.FindAction("Look");
             _jumpAction = InputSystem.actions.FindAction("Jump");
             _sprintAction = InputSystem.actions.FindAction("Sprint");
+            _interactAction = InputSystem.actions.FindAction("Interact");
+            _closeAction = InputSystem.actions.FindAction("Close");
         }
 
         private void Update()
         {
+            Interact();
+            
+            if (inputLock.activeInHierarchy)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                return;
+            }
+            
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            
             Look();
             Move();
+        }
+
+        private void ChestOpened()
+        {
+            _canInteractWithChest = false;
+        }
+        
+        private void Interact()
+        {
+            if (!_canInteractWithChest)
+            {
+                return;
+            }
+            
+            if (_interactAction.WasPressedThisFrame())
+            {
+                Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+                Ray ray = _mainCamera.ScreenPointToRay(screenCenter);
+                if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
+                {
+                    if (hit.collider.gameObject.CompareTag("Chest"))
+                    {
+                        inputLock.SetActive(!inputLock.activeSelf);
+                    }
+                }
+            }
+
+            if (_closeAction.IsPressed())
+            {
+                inputLock.SetActive(false);
+            }
         }
 
         private void Look()

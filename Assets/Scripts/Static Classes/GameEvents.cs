@@ -1,7 +1,9 @@
-﻿namespace Static_Classes
+﻿using System;
+
+namespace Static_Classes
 {
     public class GameEvents
     {
-        
+        public static Action ChestOpened;
     }
 }

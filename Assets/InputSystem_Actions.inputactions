@@ -36,7 +36,7 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -90,6 +90,15 @@
                     "name": "DigitInput",
                     "type": "Button",
                     "id": "736ade93-42e5-4a27-80d3-76566fd4d4b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Close",
+                    "type": "Button",
+                    "id": "18b4004c-7aae-41cd-a752-f8a40e63700b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -600,6 +609,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DigitInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa36c7d4-387e-4556-b9c1-50d3b2ac0227",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
