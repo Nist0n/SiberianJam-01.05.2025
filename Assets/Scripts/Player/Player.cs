@@ -40,7 +40,6 @@ namespace Player
                 mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
             }
             
-
             _characterController = GetComponent<CharacterController>();
 
             _cameraTransform = Camera.main.transform;
