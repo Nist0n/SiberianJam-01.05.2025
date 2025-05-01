@@ -1,98 +1,88 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Movement : MonoBehaviour
+namespace Runner
 {
-    private Transform Player;
-
-    private bool Lane1 = false;
-    private bool Lane2 = true;
-    private bool Lane3 = false;
-
-    private bool up = false;
-
-    public Material[] mat_sky;
-
-    private void Start()
+    public class Movement : MonoBehaviour
     {
-        Player = GetComponent<Transform>();
-    }
+        private Transform _player;
+        private bool _lane1 = false, _lane2 = true, _lane3 = false;
+        private bool _up = false;
 
-    private void Update()
-    {
-        if(Lane3 == true && Player.position.z < 1.1f)
+        private void Start()
         {
-            Player.position += new Vector3(0, 0, 10.5f * Time.deltaTime);
-        }
-        else if(Lane1 == true && Player.position.z > -1.1f)
-        {
-            Player.position += new Vector3(0, 0, -10.5f * Time.deltaTime);
-        }
-        else if(Lane2 == true && Player.position.z <= -0.1f)
-        {
-            Player.position += new Vector3(0, 0, 10.5f * Time.deltaTime);
-        }
-        else if(Lane2 == true && Player.position.z >= 0.1f)
-        {
-            Player.position += new Vector3(0, 0, -10.5f * Time.deltaTime);
+            _player = GetComponent<Transform>();
         }
 
-
-
-        #region ChangeBools
-        if (SwipeManager.swipeRight == true && Lane3 == false && Lane1 == true)
+        private void Update()
         {
-            Lane2 = true;
-            Lane1 = false;
-            Lane3 = false;
-        }
-        else if (SwipeManager.swipeLeft == true && Lane2 == true && Player.position.z <= 0.2f)
-        {
-            Lane1 = true;
-            Lane2 = false;
-            Lane3 = false;
-        }
-        else if (SwipeManager.swipeRight == true && Lane2 == true && Player.position.z >= -0.2f)
-        {
-            Lane3 = true;
-            Lane1 = false;
-            Lane2 = false;
-        }
-        else if (SwipeManager.swipeLeft == true && Lane1 == false && Lane3 == true)
-        {
-            Lane2 = true;
-            Lane1 = false;
-            Lane3 = false;
-        }
-        #endregion
-
-       
-       
-        if (SwipeManager.swipeUp == true && Player.position.y <= 0f && up ==false)
-        {
-            up = true;
-           
-        }
-
-        if(up == true && Player.position.y <= 1.6f)
-        {
-            Player.position += new Vector3(0, +5.0f * Time.deltaTime , 0);
-        }
-        else if(Player.position.y > 0f)
-        {
-           up = false;
-           Player.position += new Vector3(0, -5.0f * Time.deltaTime , 0);  
-        }
-        else if(Player.position.y < 0f)
-        {
-           Player.position += new Vector3(0, 0 , 0);  
-        }
-
-
-        RenderSettings.skybox.SetFloat("_Rotation", Time.time * 5.0f); //rotate skybox
-
+            HandleLaneSwitching();
         
+            HandleJump();
         
+            RenderSettings.skybox.SetFloat("_Rotation", Time.time * 5.0f);
+        }
+
+        private void HandleLaneSwitching()
+        {
+            if (SwipeManager.swipeRight && _lane3 == false && _lane1 == true)
+            {
+                _lane2 = true;
+                _lane1 = false;
+                _lane3 = false;
+            }
+            else if (SwipeManager.swipeLeft && _lane2 == true && _player.position.z <= 0.2f)
+            {
+                _lane1 = true;
+                _lane2 = false;
+                _lane3 = false;
+            }
+            else if (SwipeManager.swipeRight && _lane2 == true && _player.position.z >= -0.2f)
+            {
+                _lane3 = true;
+                _lane1 = false;
+                _lane2 = false;
+            }
+            else if (SwipeManager.swipeLeft && _lane1 == false && _lane3 == true)
+            {
+                _lane2 = true;
+                _lane1 = false;
+                _lane3 = false;
+            }
+        
+            if (_lane3 && _player.position.z < 1.1f)
+            {
+                _player.position += new Vector3(0, 0, 10.5f * Time.deltaTime);
+            }
+            else if (_lane1 && _player.position.z > -1.1f)
+            {
+                _player.position += new Vector3(0, 0, -10.5f * Time.deltaTime);
+            }
+            else if (_lane2 && _player.position.z <= -0.1f)
+            {
+                _player.position += new Vector3(0, 0, 10.5f * Time.deltaTime);
+            }
+            else if (_lane2 && _player.position.z >= 0.1f)
+            {
+                _player.position += new Vector3(0, 0, -10.5f * Time.deltaTime);
+            }
+        }
+
+        private void HandleJump()
+        {
+            if (SwipeManager.swipeUp && _player.position.y <= 0f && _up == false)
+            {
+                _up = true;
+            }
+
+            if (_up && _player.position.y <= 1.6f)
+            {
+                _player.position += new Vector3(0, 5.0f * Time.deltaTime, 0);
+            }
+            else if (_player.position.y > 0f)
+            {
+                _up = false;
+                _player.position += new Vector3(0, -5.0f * Time.deltaTime, 0);
+            }
+        }
     }
 }

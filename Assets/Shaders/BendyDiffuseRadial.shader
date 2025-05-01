@@ -1,81 +1,111 @@
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
-
-Shader "Custom/Bendy diffuse - Radial" 
+Shader "Custom/BendyTransparentRadial_URP"
 {
-	Properties 
-	{
-		_Color ("Main Color", Color) = (1,1,1,1)
-		_MainTex ("Base (RGB)", 2D) = "white" {}
-	}
+    Properties
+    {
+        _BaseColor ("Main Color", Color) = (1, 1, 1, 0.5)  // Для прозрачности
+        _BaseMap ("Base (RGB) Alpha (A)", 2D) = "white" {}
+        _Cutoff ("Alpha Cutoff", Range(0, 1)) = 0.5 
+    }
 
-	SubShader 
-	{
-		Tags { "RenderType"="Opaque" }
-		LOD 200
+    SubShader
+    {
+        Tags 
+        { 
+            "RenderType" = "Transparent" 
+            "RenderPipeline" = "UniversalPipeline"
+            "Queue" = "Transparent"  
+            "IgnoreProjector" = "True"  
+        }
 
-		CGPROGRAM
-		#pragma surface surf Lambert vertex:vert addshadow
-		#pragma multi_compile __ HORIZON_WAVES 
-		#pragma multi_compile __ BEND_ON
+        Pass
+        {
+            Name "ForwardLit"
+            Tags { "LightMode" = "UniversalForward" }
 
-		// Global properties to be set by BendControllerRadial script
-		uniform half3 _CurveOrigin;
-		uniform fixed3 _ReferenceDirection;
-		uniform half _Curvature;
-		uniform fixed3 _Scale;
-		uniform half _FlatMargin;
-		uniform half _HorizonWaveFrequency;
+            Blend SrcAlpha OneMinusSrcAlpha  
+            ZWrite Off  
+            Cull Back  
 
-		// Per material properties
-		sampler2D _MainTex;
-		fixed4 _Color;
+            HLSLPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma multi_compile __ HORIZON_WAVES
+            #pragma multi_compile __ BEND_ON
+            #pragma shader_feature _ALPHATEST_ON  
 
-		struct Input 
-		{
-			float2 uv_MainTex;
-		};
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+            
+            half3 _CurveOrigin;
+            half3 _ReferenceDirection;
+            half _Curvature;
+            half3 _Scale;
+            half _FlatMargin;
+            half _HorizonWaveFrequency;
+            
+            sampler2D _BaseMap;
+            float4 _BaseMap_ST;
+            half4 _BaseColor;
+            half _Cutoff;
 
-		half4 Bend(half4 v)
-		{
-			half4 wpos = mul (unity_ObjectToWorld, v);
-			
-			half2 xzDist = (wpos.xz - _CurveOrigin.xz) / _Scale.xz;
-			half dist = length(xzDist);
-			fixed waveMultiplier = 1;
-			
-			#if defined(HORIZON_WAVES)
-			half2 direction = lerp(_ReferenceDirection.xz, xzDist, min(dist, 1));
-			
-			half theta = acos(clamp(dot(normalize(direction), _ReferenceDirection.xz), -1, 1));
-			
-			waveMultiplier = cos(theta * _HorizonWaveFrequency);
-			#endif
-			
-			dist = max(0, dist - _FlatMargin);
-			
-			wpos.y -= dist * dist * _Curvature * waveMultiplier;
-			
-			wpos = mul (unity_WorldToObject, wpos);
-			
-			return wpos;
-		}
+            struct Attributes
+            {
+                float4 positionOS : POSITION;
+                float2 uv : TEXCOORD0;
+            };
 
-		void vert (inout appdata_full v) 
-		{
-			#if defined(BEND_ON)
-			v.vertex = Bend(v.vertex);	
-			#endif
-		}
+            struct Varyings
+            {
+                float4 positionHCS : SV_POSITION;
+                float2 uv : TEXCOORD0;
+            };
 
-		void surf (Input IN, inout SurfaceOutput o) 
-		{
-			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
-			o.Albedo = c.rgb;
-			o.Alpha = c.a;
-		}
-		ENDCG
-	}
+            half4 Bend(half4 positionOS)
+            {
+                half4 positionWS = mul(UNITY_MATRIX_M, positionOS);
+                
+                half2 xzDist = (positionWS.xz - _CurveOrigin.xz) / _Scale.xz;
+                half dist = length(xzDist);
+                half waveMultiplier = 1.0;
+                
+                #if defined(HORIZON_WAVES)
+                half2 direction = lerp(_ReferenceDirection.xz, xzDist, min(dist, 1.0));
+                half theta = acos(clamp(dot(normalize(direction), normalize(_ReferenceDirection.xz)), -1.0, 1.0));
+                waveMultiplier = cos(theta * _HorizonWaveFrequency);
+                #endif
+                
+                dist = max(0.0, dist - _FlatMargin);
+                positionWS.y -= dist * dist * _Curvature * waveMultiplier;
+                
+                return mul(UNITY_MATRIX_I_M, positionWS);
+            }
 
-	Fallback "Legacy Shaders/Diffuse"
+            Varyings vert(Attributes IN)
+            {
+                Varyings OUT;
+                
+                #if defined(BEND_ON)
+                IN.positionOS = Bend(IN.positionOS);
+                #endif
+                
+                OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
+                OUT.uv = TRANSFORM_TEX(IN.uv, _BaseMap);
+                return OUT;
+            }
+
+            half4 frag(Varyings IN) : SV_Target
+            {
+                half4 color = tex2D(_BaseMap, IN.uv) * _BaseColor;
+                
+                #ifdef _ALPHATEST_ON
+                clip(color.a - _Cutoff);
+                #endif
+                
+                return color;
+            }
+            ENDHLSL
+        }
+    }
+
+    Fallback "Universal Render Pipeline/Transparent"
 }
