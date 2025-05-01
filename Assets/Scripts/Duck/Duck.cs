@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using Static_Classes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,24 +11,39 @@ namespace Duck
         [SerializeField] private float speed = 5f;
         [SerializeField] private float maxMoveDistance = 10f;
         [SerializeField] private int health = 5;
+
+        [SerializeField] private GameObject eggPrefab;
         
         private bool _reachedGoal = true;
         private Vector3 _goal;
 
-        private float _screenZMax = 85;
-        private float _screenZMin = -90;
-        private float _screenYMax = 90;
-        private float _screenYMin = 20;
-        
-        private Camera _mainCamera;
-        
-        private void Start()
+        private readonly float _screenZMax = 85;
+        private readonly float _screenZMin = -90;
+        private readonly float _screenYMax = 90;
+        private readonly float _screenYMin = 20;
+
+        private void OnEnable()
         {
-            _mainCamera = Camera.main;
+            GameEvents.DuckDefeated += DuckDefeated;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.DuckDefeated -= DuckDefeated;
+        }
+
+        private void DuckDefeated()
+        {
+            StartCoroutine(DuckDied());
         }
 
         private void Update()
         {
+            if (health <= 0)
+            {
+                return;
+            }
+            
             if (_reachedGoal)
             {
                 float randomY = Random.Range(-maxMoveDistance, maxMoveDistance) + transform.position.y;
@@ -45,6 +62,23 @@ namespace Duck
             {
                 transform.position += (_goal - transform.position).normalized * (Time.deltaTime * speed);
             }
+        }
+
+        public void ReceiveDamage(int damage)
+        {
+            health -= damage;
+            if (health <= 0)
+            {
+                GameEvents.DuckDefeated?.Invoke();
+            }
+        }
+
+        private IEnumerator DuckDied()
+        {
+            yield return new WaitForSeconds(1f);
+            Instantiate(eggPrefab, transform.position, Quaternion.identity);
+            // possibly wait for death animation
+            Destroy(gameObject);
         }
     }
 }
