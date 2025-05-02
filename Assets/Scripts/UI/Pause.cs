@@ -16,7 +16,7 @@ namespace UI
         
         private InputAction _pauseAction;
 
-        [SerializeField] private FaderExample fader;
+        private FaderExample _fader;
         
         private void Start()
         {
@@ -24,6 +24,7 @@ namespace UI
             exitButton.onClick.AddListener(ExitToMenu);
 
             _pauseAction = InputSystem.actions.FindAction("Close");
+            _fader = FindAnyObjectByType<FaderExample>();
         }
 
         private void Update()
@@ -55,7 +56,7 @@ namespace UI
         private void ExitToMenu()
         {
             Time.timeScale = 1;
-            fader.LoadScene("MainMenu");
+            _fader.LoadScene("MainMenu");
         }
     }
 }

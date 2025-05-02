@@ -1123,6 +1123,10 @@ PrefabInstance:
       propertyPath: fader
       value: 
       objectReference: {fileID: 542592825}
+    - target: {fileID: 6980200849630304705, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
+      propertyPath: inputLock
+      value: 
+      objectReference: {fileID: 569255739}
     - target: {fileID: 8180042997244707383, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
