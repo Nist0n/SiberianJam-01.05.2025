@@ -19,6 +19,8 @@ namespace Duck
 
         private float _shotTimer;
         private bool _canShoot = true;
+
+        private bool _shooting;
         
         private void Start()
         {
@@ -28,8 +30,12 @@ namespace Duck
 
         private void Update()
         {
-            crosshairImage.transform.position = Mouse.current.position.ReadValue();
-            crosshairHitImage.transform.position = Mouse.current.position.ReadValue();
+            if (!_shooting)
+            {
+                crosshairImage.transform.position = Mouse.current.position.ReadValue();
+                            crosshairHitImage.transform.position = Mouse.current.position.ReadValue();
+            }
+            
             if (_shotTimer > cooldown)
             {
                 _canShoot = true;
@@ -54,11 +60,17 @@ namespace Duck
         private IEnumerator Shoot()
         {
             _canShoot = false;
+            _shooting = true;
             Debug.Log("Shot");
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            
             yield return new WaitForSeconds(shotDelay);
+            
+            Mouse.current.WarpCursorPosition(crosshairImage.transform.position);
+            _shooting = false;
             crosshairHitImage.SetActive(true);
             crosshairImage.SetActive(false);
+            
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.collider.gameObject.CompareTag("Duck"))
