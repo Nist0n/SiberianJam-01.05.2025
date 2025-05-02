@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Chest
   - Duck
+  - Obstacle
+  - Car
   layers:
   - Default
   - TransparentFX

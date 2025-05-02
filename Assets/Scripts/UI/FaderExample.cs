@@ -38,6 +38,22 @@ namespace UI
 
             StartCoroutine(LoadSceneRoutine(sceneName));
         }
+        
+        public void LoadScene(int sceneIndex)
+        {
+            if (_isLoading)
+            {
+                return;
+            }
+        
+            var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            if (currentSceneIndex == sceneIndex)
+            {
+                throw new Exception("ffffffff");
+            }
+
+            StartCoroutine(LoadSceneRoutine(sceneIndex));
+        }
 
         private IEnumerator LoadSceneRoutine(string sceneName)
         {
@@ -49,6 +65,39 @@ namespace UI
             while (waitFading) yield return null;
 
             var async = SceneManager.LoadSceneAsync(sceneName);
+            if (async != null)
+            {
+                async.allowSceneActivation = false;
+
+                while (async.progress < 0.9f)
+                {
+                    yield return null;
+                }
+
+                async.allowSceneActivation = true;
+            }
+
+            waitFading = true;
+            Fade.instance.FadeOut(() => waitFading = false);
+
+            while (waitFading)
+            {
+                yield return null;
+            }
+
+            _isLoading = false;
+        }
+        
+        private IEnumerator LoadSceneRoutine(int sceneIndex)
+        {
+            _isLoading = true;
+
+            var waitFading = true;
+            Fade.instance.FadeIn(() => waitFading = false);
+
+            while (waitFading) yield return null;
+
+            var async = SceneManager.LoadSceneAsync(sceneIndex);
             if (async != null)
             {
                 async.allowSceneActivation = false;

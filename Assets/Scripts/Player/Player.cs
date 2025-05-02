@@ -1,6 +1,8 @@
-﻿using Environment;
+﻿using System;
+using Environment;
 using Static_Classes;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,6 +24,8 @@ namespace Player
         [SerializeField] private GameObject inputLock;
         [SerializeField] private GameObject hintPanel;
         [SerializeField] private TMP_Text hintText;
+
+        [SerializeField] private FaderExample fader;
         
         private const float Gravity = -9.81f;
 
@@ -45,7 +49,7 @@ namespace Player
         private float _moveSpeed;
 
         private bool _grounded = true;
-        private bool _isInteracting = false;
+        private bool _isInteracting;
         
         private Camera _mainCamera;
 
@@ -89,15 +93,7 @@ namespace Player
         {
             ControlCursor();
             Interact();
-            if (_canInteractWithChest && !_isInteracting)
-            {
-                FindClosestInteractable();
-                UpdateHintUI();
-            }
-            else
-            {
-                hintPanel.SetActive(false);
-            }
+            
             
             if (inputLock.activeInHierarchy)
             {
@@ -106,6 +102,19 @@ namespace Player
             
             Look();
             Move();
+        }
+
+        private void FixedUpdate()
+        {
+            if (_canInteractWithChest && !_isInteracting)
+            {
+                FindClosestInteractable();
+                // UpdateHintUI();
+            }
+            else
+            {
+                hintPanel.SetActive(false);
+            }
         }
 
         private void ChestOpened()
@@ -134,22 +143,28 @@ namespace Player
         
         private void Interact()
         {
-            if (!_canInteractWithChest)
-            {
-                return;
-            }
-            
             if (_interactAction.WasPressedThisFrame())
             {
                 Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
                 Ray ray = _mainCamera.ScreenPointToRay(screenCenter);
                 if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
                 {
-                    if (hit.collider.gameObject.CompareTag("Chest"))
+                    GameObject hitGameObject = hit.collider.gameObject;
+                    if (hitGameObject.CompareTag("Chest"))
                     {
+                        if (!_canInteractWithChest)
+                        {
+                            return;
+                        }
                         inputLock.SetActive(!inputLock.activeSelf);
                         GameEvents.ActivateCursor?.Invoke(inputLock.activeSelf);
                         _isInteracting = inputLock.activeSelf;
+                    }
+
+                    if (hitGameObject.CompareTag("Car"))
+                    {
+                        // play sound, cutscene
+                        fader.LoadScene(2);
                     }
                 }
             }
@@ -157,6 +172,11 @@ namespace Player
             if (_closeAction.WasPressedThisFrame())
             {
                 if (Time.timeScale == 0)
+                {
+                    return;
+                }
+
+                if (!inputLock.activeInHierarchy)
                 {
                     return;
                 }
@@ -230,7 +250,12 @@ namespace Player
 
             if (Physics.Raycast(ray, out hit, interactDistance))
             {
-                InteractiveObject obj = hit.collider.GetComponent<InteractiveObject>();
+                if (_currentTarget)
+                {
+                    return;
+                }
+                
+                InteractiveObject obj = hit.collider.gameObject.GetComponent<InteractiveObject>();
                 if (obj)
                 {
                     _currentTarget = obj;

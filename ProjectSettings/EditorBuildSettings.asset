@@ -9,14 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Island.unity
-    guid: ef48ce66de6396a43869b6281b319bed
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 279d3ab882ab78a4a8a3b2938b50b8a2
   - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: da150ace0484e8d4587b28ef0ea26e62
+  - enabled: 1
+    path: Assets/Scenes/Island.unity
+    guid: ef48ce66de6396a43869b6281b319bed
+  - enabled: 1
     path: Assets/Scenes/Runner.unity
     guid: a4ce1558f1e782f42b27a483aec94e9c
+  - enabled: 1
+    path: Assets/Scenes/Bird Hunt.unity
+    guid: 6b4cc1694cf2002499923731d8056551
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
