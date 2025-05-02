@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7960890999739805024}
   - component: {fileID: 8695625285825839866}
   - component: {fileID: 9074240705904852072}
+  - component: {fileID: 1644975475620048993}
   m_Layer: 5
   m_Name: Notification
   m_TagString: Untagged
@@ -86,7 +87,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8695625285825839866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +124,28 @@ MonoBehaviour:
   lockYAxis: 0
   lockZAxis: 0
   rotationOffset: {x: 0, y: 0, z: 0}
+--- !u!95 &1644975475620048993
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300226402452748902}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 21dd40875c110e14a8d72c97d39beb84, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2985057944281584551
 GameObject:
   m_ObjectHideFlags: 0
