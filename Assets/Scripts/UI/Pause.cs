@@ -55,7 +55,7 @@ namespace UI
         private void ExitToMenu()
         {
             Time.timeScale = 1;
-            fader.LoadScene(0);
+            fader.LoadScene("MainMenu");
         }
     }
 }

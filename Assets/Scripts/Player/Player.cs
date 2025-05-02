@@ -109,7 +109,7 @@ namespace Player
             if (_canInteractWithChest && !_isInteracting)
             {
                 FindClosestInteractable();
-                // UpdateHintUI();
+                UpdateHintUI();
             }
             else
             {
@@ -164,7 +164,7 @@ namespace Player
                     if (hitGameObject.CompareTag("Car"))
                     {
                         // play sound, cutscene
-                        fader.LoadScene(2);
+                        fader.LoadScene("Island");
                     }
                 }
             }
@@ -268,6 +268,11 @@ namespace Player
 
         private void UpdateHintUI()
         {
+            if (_cursorShown)
+            {
+                return;
+            }
+            
             if (_currentTarget)
             {
                 hintPanel.SetActive(true);
