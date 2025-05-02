@@ -1,6 +1,8 @@
+using System;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using Static_Classes;
 
 namespace Environment
 {
@@ -16,6 +18,17 @@ namespace Environment
         private GameObject _hintInstance;
         private Vector3 _originalScale;
         private Sequence _animationSequence;
+        private bool _canInteractWithChest = true;
+        
+        private void OnEnable()
+        {
+            GameEvents.ChestOpened += ChestOpened;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.ChestOpened -= ChestOpened;
+        }
 
         private void Start()
         {
@@ -29,6 +42,17 @@ namespace Environment
             
                 TMP_Text text = _hintInstance.GetComponentInChildren<TMP_Text>();
                 if (text != null) text.text = interactionText;
+            }
+        }
+
+        private void Update()
+        {
+            if (!_canInteractWithChest)
+            {
+                if (_hintInstance && _hintInstance.activeSelf)
+                {
+                    _hintInstance.SetActive(false);
+                }
             }
         }
 
@@ -57,6 +81,11 @@ namespace Environment
                 .Append(_hintInstance.transform.DOScale(_originalScale * (1f + bounceStrength), disappearDuration * 0.3f).SetEase(Ease.OutQuad))
                 .Append(_hintInstance.transform.DOScale(Vector3.zero, disappearDuration * 0.7f).SetEase(Ease.InBack))
                 .OnComplete(() => _hintInstance.SetActive(false));
+        }
+        
+        private void ChestOpened()
+        {
+            _canInteractWithChest = false;
         }
 
         private void OnDestroy()
