@@ -4,8 +4,8 @@ Shader "Custom/PixelationURP"
     {
         [MainTexture] _BaseMap("Albedo", 2D) = "white" {}
         _PixelSize("Pixel Size", Range(1, 256)) = 64
-        _ColorCount("Color Count", Range(2, 32)) = 8  // Ограничение цветовой палитры
-        _DitherStrength("Dither Strength", Range(0, 1)) = 0.5  // Эффект дизеринга
+        _ColorCount("Color Count", Range(2, 32)) = 8 
+        _DitherStrength("Dither Strength", Range(0, 1)) = 0.5 
     }
 
     SubShader
@@ -41,14 +41,12 @@ Shader "Custom/PixelationURP"
             float _PixelSize;
             float _ColorCount;
             float _DitherStrength;
-
-            // Функция для квантования цвета
+            
             float3 QuantizeColor(float3 color, float steps)
             {
                 return floor(color * steps) / steps;
             }
-
-            // Простой дизеринг (шахматный узор)
+            
             float DitherPattern(float2 uv)
             {
                 float2 pixelPos = floor(uv * _PixelSize);
@@ -65,16 +63,12 @@ Shader "Custom/PixelationURP"
 
             half4 frag(Varyings IN) : SV_Target
             {
-                // Рассчитываем UV с учетом размера пикселей
                 float2 pixelatedUV = floor(IN.uv * _PixelSize) / _PixelSize;
                 
-                // Берём цвет из текстуры
                 half4 color = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, pixelatedUV);
                 
-                // Квантуем цвет для ретро-палитры
                 color.rgb = QuantizeColor(color.rgb, _ColorCount);
                 
-                // Добавляем дизеринг для сглаживания артефактов
                 color.rgb += DitherPattern(IN.uv) / _ColorCount;
                 
                 return color;
