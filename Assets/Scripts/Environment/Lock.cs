@@ -23,7 +23,6 @@ namespace Environment
         private void Start()
         {
             _enterKeyAction = InputSystem.actions.FindAction("DigitInput");
-            // lockInput.onValueChanged.AddListener(delegate { OnKeyEnter(); });
         }
 
         private void Update()
@@ -75,6 +74,7 @@ namespace Environment
             _canInput = false;
             yield return new WaitForSeconds(2f);
             gameObject.SetActive(false);
+            GameEvents.ActivateCursor?.Invoke(false);
         }
 
         private IEnumerator SetResultText(bool result)

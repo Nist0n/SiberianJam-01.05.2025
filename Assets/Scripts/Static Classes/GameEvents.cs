@@ -2,9 +2,10 @@
 
 namespace Static_Classes
 {
-    public class GameEvents
+    public static class GameEvents
     {
         public static Action ChestOpened;
         public static Action DuckDefeated;
+        public static Action<bool> ActivateCursor;
     }
 }

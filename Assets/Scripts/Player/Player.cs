@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
-using Environment;
-using Settings.Audio;
+﻿using Environment;
 using Static_Classes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -54,15 +50,19 @@ namespace Player
         private Camera _mainCamera;
 
         private bool _canInteractWithChest = true;
+
+        private bool _cursorShown;
         
         private void OnEnable()
         {
             GameEvents.ChestOpened += ChestOpened;
+            GameEvents.ActivateCursor += CursorStateChanged;
         }
 
         private void OnDisable()
         {
             GameEvents.ChestOpened -= ChestOpened;
+            GameEvents.ActivateCursor -= CursorStateChanged;
         }
 
         private void Start()
@@ -87,6 +87,7 @@ namespace Player
 
         private void Update()
         {
+            ControlCursor();
             Interact();
             if (_canInteractWithChest && !_isInteracting)
             {
@@ -100,13 +101,8 @@ namespace Player
             
             if (inputLock.activeInHierarchy)
             {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
                 return;
             }
-            
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
             
             Look();
             Move();
@@ -115,6 +111,25 @@ namespace Player
         private void ChestOpened()
         {
             _canInteractWithChest = false;
+        }
+
+        private void ControlCursor()
+        {
+            if (_cursorShown)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
+
+        private void CursorStateChanged(bool activated)
+        {
+            _cursorShown = activated;
         }
         
         private void Interact()
@@ -133,13 +148,20 @@ namespace Player
                     if (hit.collider.gameObject.CompareTag("Chest"))
                     {
                         inputLock.SetActive(!inputLock.activeSelf);
+                        GameEvents.ActivateCursor?.Invoke(inputLock.activeSelf);
                         _isInteracting = inputLock.activeSelf;
                     }
                 }
             }
 
-            if (_closeAction.IsPressed())
+            if (_closeAction.WasPressedThisFrame())
             {
+                if (Time.timeScale == 0)
+                {
+                    return;
+                }
+                
+                GameEvents.ActivateCursor?.Invoke(false);
                 inputLock.SetActive(false);
                 _isInteracting = false;
             }
