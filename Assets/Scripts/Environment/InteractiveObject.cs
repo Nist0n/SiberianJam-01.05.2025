@@ -6,7 +6,6 @@ namespace Environment
 {
     public class InteractiveObject : MonoBehaviour
     {
-        [Header("Notification Settings")]
         [SerializeField] private string interactionText = "Взаимодействовать";
         [SerializeField] private GameObject hintPrefab;
         [SerializeField] private Vector3 hintOffset = new Vector3(0, 3f, 0);
