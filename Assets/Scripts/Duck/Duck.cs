@@ -2,6 +2,7 @@
 using System.Collections;
 using Static_Classes;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Duck
@@ -14,6 +15,8 @@ namespace Duck
 
         [SerializeField] private GameObject eggPrefab;
         
+        [SerializeField] private Slider healthbar;
+        
         private bool _reachedGoal = true;
         private Vector3 _goal;
 
@@ -21,7 +24,7 @@ namespace Duck
         private readonly float _screenZMin = -90;
         private readonly float _screenYMax = 90;
         private readonly float _screenYMin = 20;
-
+        
         private void OnEnable()
         {
             GameEvents.DuckDefeated += DuckDefeated;
@@ -35,6 +38,12 @@ namespace Duck
         private void DuckDefeated()
         {
             StartCoroutine(DuckDied());
+        }
+
+        private void Start()
+        {
+            healthbar.maxValue = health;
+            healthbar.value = health;
         }
 
         private void Update()
@@ -67,6 +76,7 @@ namespace Duck
         public void ReceiveDamage(int damage)
         {
             health -= damage;
+            healthbar.value = health;
             if (health <= 0)
             {
                 GameEvents.DuckDefeated?.Invoke();
@@ -75,9 +85,10 @@ namespace Duck
 
         private IEnumerator DuckDied()
         {
+            // possibly wait for death animation
             yield return new WaitForSeconds(1f);
             Instantiate(eggPrefab, transform.position, Quaternion.identity);
-            // possibly wait for death animation
+            healthbar.gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }
