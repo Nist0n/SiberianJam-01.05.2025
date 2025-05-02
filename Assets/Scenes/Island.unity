@@ -1095,7 +1095,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1201041363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1486,10 +1486,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zone: {fileID: 866627917}
   prefabs:
+  - {fileID: 3062878365606987877, guid: e0d633147a256f44cb524ac17cc08475, type: 3}
+  - {fileID: 8056506221399093246, guid: 6bd88fcd1780b5d4da77e5a8adb03b94, type: 3}
   - {fileID: 8127356923139050428, guid: e777bfc753c83ab45a89e922278a5cf6, type: 3}
   - {fileID: 8269086576663478161, guid: 359c70d11066b7d40938a45dd4f759ea, type: 3}
-  - {fileID: 8056506221399093246, guid: 6bd88fcd1780b5d4da77e5a8adb03b94, type: 3}
-  - {fileID: 3062878365606987877, guid: e0d633147a256f44cb524ac17cc08475, type: 3}
   randomPosDistribution: 7
   acornRadius: 0.1
   acornCounts: 
