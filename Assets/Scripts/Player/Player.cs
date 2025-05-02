@@ -263,6 +263,10 @@ namespace Player
                 }
             }
 
+            if (_currentTarget)
+            {
+                _currentTarget.HideNotification();
+            }
             _currentTarget = null;
         }
 
@@ -275,14 +279,7 @@ namespace Player
             
             if (_currentTarget)
             {
-                hintPanel.SetActive(true);
-                hintText.text = _currentTarget.InteractionText;
-                Vector3 screenPos = _mainCamera.WorldToScreenPoint(_currentTarget.transform.position);
-                hintPanel.transform.position = screenPos + new Vector3(0, 50, 0);
-            }
-            else
-            {
-                hintPanel.SetActive(false);
+                _currentTarget.ShowNotification();
             }
         }
     }
