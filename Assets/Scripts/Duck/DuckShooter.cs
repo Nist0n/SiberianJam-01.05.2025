@@ -13,6 +13,7 @@ namespace Duck
 
         [SerializeField] private Image shootCdImage;
         [SerializeField] private GameObject crosshairImage;
+        [SerializeField] private GameObject crosshairHitImage;
         
         private InputAction _shootAction;
 
@@ -28,6 +29,7 @@ namespace Duck
         private void Update()
         {
             crosshairImage.transform.position = Mouse.current.position.ReadValue();
+            crosshairHitImage.transform.position = Mouse.current.position.ReadValue();
             if (_shotTimer > cooldown)
             {
                 _canShoot = true;
@@ -55,6 +57,8 @@ namespace Duck
             Debug.Log("Shot");
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             yield return new WaitForSeconds(shotDelay);
+            crosshairHitImage.SetActive(true);
+            crosshairImage.SetActive(false);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.collider.gameObject.CompareTag("Duck"))
@@ -64,6 +68,10 @@ namespace Duck
                     duck.ReceiveDamage(damage);
                 }
             }
+
+            yield return new WaitForSeconds(0.2f);
+            crosshairHitImage.SetActive(false);
+            crosshairImage.SetActive(true);
         }
     }
 }
