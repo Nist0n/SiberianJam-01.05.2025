@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections;
+using Environment;
 using Settings.Audio;
 using Static_Classes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -21,12 +24,15 @@ namespace Player
         [SerializeField] private float interactDistance = 1f;
 
         [SerializeField] private GameObject inputLock;
+        [SerializeField] private GameObject hintPanel;
+        [SerializeField] private TMP_Text hintText;
         
         private const float Gravity = -9.81f;
 
         private CharacterController _characterController;
         private Vector3 _velocity;
         private Transform _cameraTransform;
+        private InteractiveObject _currentTarget;
 
         #region InputActions
 
@@ -43,7 +49,8 @@ namespace Player
         private float _moveSpeed;
 
         private bool _grounded = true;
-
+        private bool _isInteracting = false;
+        
         private Camera _mainCamera;
 
         private bool _canInteractWithChest = true;
@@ -81,6 +88,15 @@ namespace Player
         private void Update()
         {
             Interact();
+            if (_canInteractWithChest && !_isInteracting)
+            {
+                FindClosestInteractable();
+                UpdateHintUI();
+            }
+            else
+            {
+                hintPanel.SetActive(false);
+            }
             
             if (inputLock.activeInHierarchy)
             {
@@ -117,6 +133,7 @@ namespace Player
                     if (hit.collider.gameObject.CompareTag("Chest"))
                     {
                         inputLock.SetActive(!inputLock.activeSelf);
+                        _isInteracting = inputLock.activeSelf;
                     }
                 }
             }
@@ -124,6 +141,7 @@ namespace Player
             if (_closeAction.IsPressed())
             {
                 inputLock.SetActive(false);
+                _isInteracting = false;
             }
         }
 
@@ -181,6 +199,39 @@ namespace Player
 
             _velocity.y += Gravity * Time.deltaTime;
             _characterController.Move(_velocity * Time.deltaTime);
+        }
+        
+        private void FindClosestInteractable()
+        {
+            Ray ray = _mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, interactDistance))
+            {
+                InteractiveObject obj = hit.collider.GetComponent<InteractiveObject>();
+                if (obj)
+                {
+                    _currentTarget = obj;
+                    return;
+                }
+            }
+
+            _currentTarget = null;
+        }
+
+        private void UpdateHintUI()
+        {
+            if (_currentTarget)
+            {
+                hintPanel.SetActive(true);
+                hintText.text = _currentTarget.InteractionText;
+                Vector3 screenPos = _mainCamera.WorldToScreenPoint(_currentTarget.transform.position);
+                hintPanel.transform.position = screenPos + new Vector3(0, 50, 0);
+            }
+            else
+            {
+                hintPanel.SetActive(false);
+            }
         }
     }
 }
