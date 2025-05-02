@@ -147,6 +147,13 @@ namespace Player
         {
             if (_interactAction.WasPressedThisFrame())
             {
+                if (inputLock.activeInHierarchy)
+                {
+                    inputLock.SetActive(false);
+                    _isInteracting = false;
+                    GameEvents.ActivateCursor?.Invoke(false);
+                }
+                
                 Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
                 Ray ray = _mainCamera.ScreenPointToRay(screenCenter);
                 if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
