@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Static_Classes;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -16,6 +17,8 @@ namespace Duck
         [SerializeField] private GameObject eggPrefab;
         
         [SerializeField] private Slider healthbar;
+
+        private FaderExample _fader;
         
         private bool _reachedGoal = true;
         private Vector3 _goal;
@@ -44,6 +47,8 @@ namespace Duck
         {
             healthbar.maxValue = health;
             healthbar.value = health;
+
+            _fader = FindAnyObjectByType<FaderExample>();
         }
 
         private void Update()
@@ -90,6 +95,8 @@ namespace Duck
             Instantiate(eggPrefab, transform.position, Quaternion.identity);
             healthbar.gameObject.SetActive(false);
             Destroy(gameObject);
+            
+            _fader.LoadScene("MainMenu");
         }
     }
 }

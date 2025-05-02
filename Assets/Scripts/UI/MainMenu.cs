@@ -17,6 +17,8 @@ namespace UI
         [SerializeField] private GameObject settingsUI;
         [SerializeField] private GameObject cutSceneUI;
 
+        private FaderExample _fader;
+        
         private void Awake()
         {
             playButton.onClick.AddListener(PlayGame);
@@ -32,6 +34,7 @@ namespace UI
             AudioManager.instance.PlayMusic("MainMenu");
             AudioManager.instance.PlayAmbient("AmbientMenu");
             settingsUI.SetActive(false);
+            _fader = FindAnyObjectByType<FaderExample>();
         }
 
         private void PlayGame()
@@ -42,6 +45,7 @@ namespace UI
             cutSceneUI.SetActive(true);
             controlButtons.SetActive(false);
             AudioManager.instance.PlayAmbient("Ambient");
+            _fader.LoadScene("Home");
         }
 
         private void ToggleSettings()

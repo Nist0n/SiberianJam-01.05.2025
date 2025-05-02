@@ -25,7 +25,7 @@ namespace Player
         [SerializeField] private GameObject hintPanel;
         [SerializeField] private TMP_Text hintText;
 
-        [SerializeField] private FaderExample fader;
+        private FaderExample _fader;
         
         private const float Gravity = -9.81f;
 
@@ -71,6 +71,8 @@ namespace Player
 
         private void Start()
         {
+            _fader = FindAnyObjectByType<FaderExample>();
+            
             if (PlayerPrefs.HasKey("Sensitivity"))
             {
                 mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
@@ -164,7 +166,7 @@ namespace Player
                     if (hitGameObject.CompareTag("Car"))
                     {
                         // play sound, cutscene
-                        fader.LoadScene("Island");
+                        _fader.LoadScene("Island");
                     }
                 }
             }

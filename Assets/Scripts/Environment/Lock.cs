@@ -2,6 +2,7 @@
 using System.Collections;
 using Static_Classes;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -20,9 +21,12 @@ namespace Environment
 
         private bool _canInput = true;
 
+        private FaderExample _fader;
+        
         private void Start()
         {
             _enterKeyAction = InputSystem.actions.FindAction("DigitInput");
+            _fader = FindAnyObjectByType<FaderExample>();
         }
 
         private void Update()
@@ -41,7 +45,7 @@ namespace Environment
                 Debug.Log(character);
                 if ("1234567890".Contains(character))
                 {
-                    if (lockInput.text.Length <= 4)
+                    if (lockInput.text.Length < 4)
                     {
                         lockInput.text += character;
                     }
@@ -75,6 +79,7 @@ namespace Environment
             yield return new WaitForSeconds(2f);
             gameObject.SetActive(false);
             GameEvents.ActivateCursor?.Invoke(false);
+            _fader.LoadScene("Runner");
         }
 
         private IEnumerator SetResultText(bool result)

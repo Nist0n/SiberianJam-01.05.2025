@@ -31,10 +31,10 @@ namespace UI
             }
         
             var currentSceneName = SceneManager.GetActiveScene().name;
-            if (currentSceneName == sceneName)
-            {
-                throw new Exception("ffffffff");
-            }
+            // if (currentSceneName == sceneName)
+            // {
+            //     throw new Exception("ffffffff");
+            // }
 
             StartCoroutine(LoadSceneRoutine(sceneName));
         }

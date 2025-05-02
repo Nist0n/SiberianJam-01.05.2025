@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -13,6 +14,8 @@ namespace Runner
         private bool _isReached = false;
         private float _currentDistance;
 
+        private FaderExample _fader;
+
         public float DistanceToPlayer => _currentDistance;
 
         private void Start()
@@ -23,13 +26,15 @@ namespace Runner
                 _player.position.y,
                 0
             );
+
+            _fader = FindAnyObjectByType<FaderExample>();
         }
 
         private void Update()
         {
             if (_isReached) return;
         
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            transform.Translate(Vector3.right * (speed * Time.deltaTime));
         
             _currentDistance = Vector3.Distance(
                 new Vector3(transform.position.x, 0, 0),
@@ -40,6 +45,7 @@ namespace Runner
             {
                 _isReached = true;
                 Debug.Log("Цель достигнута");
+                _fader.LoadScene("Duck Hunt");
             }
         }
     }

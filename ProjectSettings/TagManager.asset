@@ -8,6 +8,7 @@ TagManager:
   - Duck
   - Obstacle
   - Car
+  - Water
   layers:
   - Default
   - TransparentFX

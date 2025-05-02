@@ -26,6 +26,7 @@ namespace Duck
         {
             _shootAction = InputSystem.actions.FindAction("Attack");
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         private void Update()

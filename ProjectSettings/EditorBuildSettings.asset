@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Runner.unity
     guid: a4ce1558f1e782f42b27a483aec94e9c
   - enabled: 1
-    path: Assets/Scenes/Bird Hunt.unity
+    path: Assets/Scenes/Duck Hunt.unity
     guid: 6b4cc1694cf2002499923731d8056551
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
