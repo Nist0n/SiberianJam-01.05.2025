@@ -15,6 +15,7 @@ namespace UI
 
         [SerializeField] private GameObject controlButtons;
         [SerializeField] private GameObject settingsUI;
+        [SerializeField] private GameObject cutSceneUI;
 
         private void Awake()
         {
@@ -37,6 +38,9 @@ namespace UI
         {
             AudioManager.instance.PlaySfx("Click");
             AudioManager.instance.musicSource.Stop();
+            // Добавить метод для замедленного приближения камеры к автомату (корутину мб)
+            cutSceneUI.SetActive(true);
+            controlButtons.SetActive(false);
             AudioManager.instance.PlayAmbient("Ambient");
         }
 

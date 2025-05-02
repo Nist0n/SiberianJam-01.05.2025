@@ -1,15 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Collision : MonoBehaviour
+namespace Runner
 {
-    private void OnTriggerEnter(Collider other)
+    public class Collision : MonoBehaviour
     {
-        if(other.tag == "Obstacle")
+        private void OnTriggerEnter(Collider other)
         {
-            SceneManager.LoadScene("Main");//game over and reload scene
+            if(other.tag == "Obstacle")
+            {
+                SceneManager.LoadScene("Runner");//game over and reload scene
+            }
         }
     }
 }
