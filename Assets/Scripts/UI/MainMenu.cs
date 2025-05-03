@@ -17,6 +17,7 @@ namespace UI
         [SerializeField] private GameObject controlButtons;
         [SerializeField] private GameObject settingsUI;
         [SerializeField] private GameObject cutSceneUI;
+        [SerializeField] private GameObject mainMenu;
 
         private FaderExample _fader;
         
@@ -44,16 +45,9 @@ namespace UI
             AudioManager.instance.musicSource.Stop();
             // Добавить метод для замедленного приближения камеры к автомату (корутину мб)
             cutSceneUI.SetActive(true);
+            mainMenu.SetActive(false);
             controlButtons.SetActive(false);
             AudioManager.instance.PlayAmbient("Ambient");
-            if (_fader)
-            {
-                _fader.LoadScene("Home");
-            }
-            else
-            {
-                SceneManager.LoadScene("Home");  
-            }
         }
 
         private void ToggleSettings()

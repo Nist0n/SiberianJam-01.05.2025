@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Settings.Audio;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
@@ -106,7 +107,14 @@ namespace UI
             Cursor.lockState = CursorLockMode.Locked;
             AudioManager.instance.sfxSource.Stop();
             gameObject.SetActive(false);
-            _fader.LoadScene("Runner");
+            if (_fader)
+            {
+                _fader.LoadScene("Home");
+            }
+            else
+            {
+                SceneManager.LoadScene("Home");  
+            }
         }
     }
 }
