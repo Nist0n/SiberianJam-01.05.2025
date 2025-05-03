@@ -1,4 +1,6 @@
-﻿using Static_Classes;
+﻿using System;
+using System.Collections;
+using Static_Classes;
 using UnityEngine;
 
 namespace Environment
@@ -7,31 +9,41 @@ namespace Environment
     {
         [SerializeField] private GameObject inputLock;
         
+        private Animator _animator;
+
+        private void OnEnable()
+        {
+            GameEvents.ChestOpened += ChestOpened;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.ChestOpened -= ChestOpened;
+        }
+
+        private void ChestOpened()
+        {
+            StartCoroutine(AnimateChest());
+        }
+
+        private void Start()
+        {
+            _animator = GetComponent<Animator>();
+        }
+
         public bool InteractWithLock()
         {
             inputLock.SetActive(!inputLock.activeSelf);
             bool isInteracting = inputLock.activeSelf;
             GameEvents.ActivateCursor?.Invoke(inputLock.activeSelf);
-            
-            // if (inputLock.activeInHierarchy)
-            // {
-            //     inputLock.SetActive(false);
-            //     
-            // }
-            // else
-            // {
-            //     inputLock.SetActive(true);
-            //     GameEvents.ActivateCursor?.Invoke(true); 
-            //     isInteracting = true;
-            // }
 
             return isInteracting;
         }
 
-        public void CloseLock()
+        private IEnumerator AnimateChest()
         {
-            inputLock.SetActive(false);
-            GameEvents.ActivateCursor?.Invoke(true);
+            yield return new WaitForSeconds(2f);
+            _animator.Play("open");
         }
     }
 }
