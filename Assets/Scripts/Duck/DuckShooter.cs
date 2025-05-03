@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -14,6 +15,10 @@ namespace Duck
         [SerializeField] private Image shootCdImage;
         [SerializeField] private GameObject crosshairImage;
         [SerializeField] private GameObject crosshairHitImage;
+        [SerializeField] private GameObject fireImageGameObject;
+
+        [SerializeField] private List<Sprite> fireSprites;
+        
         
         private InputAction _shootAction;
 
@@ -21,12 +26,16 @@ namespace Duck
         private bool _canShoot = true;
 
         private bool _shooting;
+
+        private Image _fireImage;
         
         private void Start()
         {
             _shootAction = InputSystem.actions.FindAction("Attack");
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.None;
+            
+            _fireImage = fireImageGameObject.GetComponent<Image>();
         }
 
         private void Update()
@@ -66,6 +75,7 @@ namespace Duck
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             
             yield return new WaitForSeconds(shotDelay);
+            StartCoroutine(PlayShotAnimation());
             
             Mouse.current.WarpCursorPosition(crosshairImage.transform.position);
             _shooting = false;
@@ -85,6 +95,19 @@ namespace Duck
             yield return new WaitForSeconds(0.2f);
             crosshairHitImage.SetActive(false);
             crosshairImage.SetActive(true);
+        }
+
+        private IEnumerator PlayShotAnimation()
+        {
+            fireImageGameObject.SetActive(true);
+            fireImageGameObject.transform.position = crosshairImage.transform.position;
+            foreach (var sprite in fireSprites)
+            {
+                _fireImage.sprite = sprite;
+                yield return new WaitForSeconds(0.07f);
+            }
+            _fireImage.sprite = fireSprites[0];
+            fireImageGameObject.SetActive(false);
         }
     }
 }
