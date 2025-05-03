@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Environment;
 using Static_Classes;
 using TMPro;
@@ -93,7 +94,6 @@ namespace Player
             ControlCursor();
             Interact();
             
-            
             if (_isInteracting)
             {
                 return;
@@ -105,7 +105,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            if (_canInteractWithChest && !_isInteracting)
+            if (!_isInteracting)
             {
                 FindClosestInteractable();
                 UpdateHintUI();
@@ -115,6 +115,7 @@ namespace Player
         private void ChestOpened()
         {
             _canInteractWithChest = false;
+            StartCoroutine(StopInteracting());
         }
 
         private void ControlCursor()
@@ -177,23 +178,6 @@ namespace Player
                     }
                 }
             }
-
-            // if (_closeAction.WasPressedThisFrame())
-            // {
-            //     if (Time.timeScale == 0)
-            //     {
-            //         return;
-            //     }
-            //
-            //     if (!_isInteracting)
-            //     {
-            //         return;
-            //     }
-            //     
-            //     GameEvents.ActivateCursor?.Invoke(false);
-            //     inputLock.SetActive(false);
-            //     _isInteracting = false;
-            // }
         }
 
         private void Look()
@@ -290,6 +274,12 @@ namespace Player
             {
                 _currentTarget.ShowNotification();
             }
+        }
+
+        private IEnumerator StopInteracting()
+        {
+            yield return new WaitForSeconds(2f);
+            _isInteracting = false;
         }
     }
 }
