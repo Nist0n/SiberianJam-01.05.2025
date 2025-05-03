@@ -14,7 +14,7 @@ namespace Environment
         [SerializeField] private float appearDuration = 0.5f;
         [SerializeField] private float disappearDuration = 0.3f;
         [SerializeField] private float bounceStrength = 0.2f;
-
+        
         private GameObject _hintInstance;
         private Vector3 _originalScale;
         private Sequence _animationSequence;
@@ -49,6 +49,11 @@ namespace Environment
         {
             if (!_canInteractWithChest)
             {
+                if (!gameObject.CompareTag("Chest"))
+                {
+                    return;
+                }
+                
                 if (_hintInstance && _hintInstance.activeSelf)
                 {
                     _hintInstance.SetActive(false);

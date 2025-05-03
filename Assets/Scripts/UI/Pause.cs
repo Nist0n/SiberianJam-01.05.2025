@@ -20,6 +20,8 @@ namespace UI
         private bool _isInteracting;
 
         private static Pause _instance;
+
+        private bool _cursorShown;
         
         private void Awake()
         {
@@ -36,13 +38,34 @@ namespace UI
         private void OnEnable()
         {
             GameEvents.Interacting += Interacting;
+            GameEvents.ActivateCursor += CursorStateChanged;
         }
 
         private void OnDisable()
         {
             GameEvents.Interacting -= Interacting;
+            GameEvents.ActivateCursor -= CursorStateChanged;
         }
 
+        private void ControlCursor()
+        {
+            if (_cursorShown)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
+
+        private void CursorStateChanged(bool activated)
+        {
+            _cursorShown = activated;
+        }
+        
         private void Interacting(bool obj)
         {
             _isInteracting = obj;
@@ -59,11 +82,11 @@ namespace UI
 
         private void Update()
         {
+            ControlCursor();
             if (_pauseAction.triggered)
             {
                 if (_isInteracting)
                 {
-                    Debug.Log("interacting");
                     return;
                 }
                 
