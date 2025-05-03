@@ -18,7 +18,21 @@ namespace UI
         private FaderExample _fader;
 
         private bool _isInteracting;
+
+        private static Pause _instance;
         
+        private void Awake()
+        {
+            if (_instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
         private void OnEnable()
         {
             GameEvents.Interacting += Interacting;
@@ -49,6 +63,7 @@ namespace UI
             {
                 if (_isInteracting)
                 {
+                    Debug.Log("interacting");
                     return;
                 }
                 

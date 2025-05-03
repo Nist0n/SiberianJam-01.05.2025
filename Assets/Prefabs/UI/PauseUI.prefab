@@ -768,7 +768,6 @@ MonoBehaviour:
   continueButton: {fileID: 6748395253466938668}
   exitButton: {fileID: 8689124421094703137}
   pauseUI: {fileID: 8718292098821606217}
-  lockUI: {fileID: 0}
 --- !u!1 &8718292098821606217
 GameObject:
   m_ObjectHideFlags: 0
