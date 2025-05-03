@@ -1,3 +1,5 @@
+using System.Collections;
+using Settings.Audio;
 using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,6 +11,9 @@ namespace Runner
         [SerializeField] private float startDistance = 50f;
         [SerializeField] private float speed = 5f;    
         [SerializeField] private float minDistance = 1f;   // Дистанция "победы"
+
+        [SerializeField] private float voiceLineInterval = 15f;
+        
 
         private Transform _player;
         private bool _isReached = false;
@@ -28,6 +33,8 @@ namespace Runner
             );
 
             _fader = FindAnyObjectByType<FaderExample>();
+
+            StartCoroutine(PlayVoiceLinesIndefinitely());
         }
 
         private void Update()
@@ -47,6 +54,16 @@ namespace Runner
                 Debug.Log("Цель достигнута");
                 _fader.LoadScene("Duck Hunt");
             }
+        }
+
+        private IEnumerator PlayVoiceLinesIndefinitely()
+        {
+            yield return new WaitForSeconds(1f);
+            while (true)
+            {
+                AudioManager.instance.PlayRandomVoiceLine(1);
+                yield return new WaitForSeconds(voiceLineInterval);
+            } 
         }
     }
 }
