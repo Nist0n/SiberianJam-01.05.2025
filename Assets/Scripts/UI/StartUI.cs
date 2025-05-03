@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -13,16 +14,22 @@ namespace UI
         [SerializeField] private float disappearDuration = 0.3f;
         [SerializeField] private float bounceStrength = 0.2f;
         [SerializeField] private GameObject hintInstance;
+
+        [SerializeField] private float timeBetweenPhrases = 5f;
+        
+        [SerializeField] private List<string> phrases;
         
         private Vector3 _originalScale;
         private Sequence _animationSequence;
+
+        private TMP_Text _text;
     
         private void Start()
         {
             _originalScale = hintInstance.transform.localScale;
             hintInstance.transform.localScale = Vector3.zero;
-            TMP_Text text = hintInstance.GetComponentInChildren<TMP_Text>();
-            if (text != null) text.text = interactionText;
+            _text = hintInstance.GetComponentInChildren<TMP_Text>();
+            if (_text != null) _text.text = interactionText;
             StartCoroutine(Show());
         }
 
@@ -30,6 +37,7 @@ namespace UI
         {
             yield return new WaitForSeconds(2f);
             ShowNotification();
+            StartCoroutine(ShowSeriesOfText(phrases));
             // yield return new WaitForSeconds(.);
             // HideNotification();
         }
@@ -59,6 +67,15 @@ namespace UI
                 .Append(hintInstance.transform.DOScale(_originalScale * (1f + bounceStrength), disappearDuration * 0.3f).SetEase(Ease.OutQuad))
                 .Append(hintInstance.transform.DOScale(Vector3.zero, disappearDuration * 0.7f).SetEase(Ease.InBack))
                 .OnComplete(() => hintInstance.SetActive(false));
+        }
+
+        private IEnumerator ShowSeriesOfText(List<string> series)
+        {
+            foreach (var phrase in series)
+            {
+                _text.text = phrase;
+                yield return new WaitForSeconds(timeBetweenPhrases);
+            }
         }
     }
 }
