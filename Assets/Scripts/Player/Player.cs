@@ -21,10 +21,6 @@ namespace Player
         [SerializeField] private float distanceToGround = 1.1f;
         [SerializeField] private float interactDistance = 1f;
 
-        [SerializeField] private GameObject inputLock;
-        [SerializeField] private GameObject hintPanel;
-        [SerializeField] private TMP_Text hintText;
-
         private FaderExample _fader;
         
         private const float Gravity = -9.81f;
@@ -97,7 +93,7 @@ namespace Player
             Interact();
             
             
-            if (inputLock.activeInHierarchy)
+            if (_isInteracting)
             {
                 return;
             }
@@ -112,10 +108,6 @@ namespace Player
             {
                 FindClosestInteractable();
                 UpdateHintUI();
-            }
-            else
-            {
-                hintPanel.SetActive(false);
             }
         }
 
@@ -147,13 +139,6 @@ namespace Player
         {
             if (_interactAction.WasPressedThisFrame())
             {
-                if (inputLock.activeInHierarchy)
-                {
-                    inputLock.SetActive(false);
-                    _isInteracting = false;
-                    GameEvents.ActivateCursor?.Invoke(false);
-                }
-                
                 Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
                 Ray ray = _mainCamera.ScreenPointToRay(screenCenter);
                 if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
@@ -165,9 +150,9 @@ namespace Player
                         {
                             return;
                         }
-                        inputLock.SetActive(!inputLock.activeSelf);
-                        GameEvents.ActivateCursor?.Invoke(inputLock.activeSelf);
-                        _isInteracting = inputLock.activeSelf;
+                        
+                        Chest chest = hitGameObject.GetComponent<Chest>();
+                        _isInteracting = chest.InteractWithLock();
                     }
 
                     if (hitGameObject.CompareTag("Car"))
@@ -178,22 +163,22 @@ namespace Player
                 }
             }
 
-            if (_closeAction.WasPressedThisFrame())
-            {
-                if (Time.timeScale == 0)
-                {
-                    return;
-                }
-
-                if (!inputLock.activeInHierarchy)
-                {
-                    return;
-                }
-                
-                GameEvents.ActivateCursor?.Invoke(false);
-                inputLock.SetActive(false);
-                _isInteracting = false;
-            }
+            // if (_closeAction.WasPressedThisFrame())
+            // {
+            //     if (Time.timeScale == 0)
+            //     {
+            //         return;
+            //     }
+            //
+            //     if (!_isInteracting)
+            //     {
+            //         return;
+            //     }
+            //     
+            //     GameEvents.ActivateCursor?.Invoke(false);
+            //     inputLock.SetActive(false);
+            //     _isInteracting = false;
+            // }
         }
 
         private void Look()

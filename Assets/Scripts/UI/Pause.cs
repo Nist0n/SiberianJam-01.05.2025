@@ -12,7 +12,6 @@ namespace UI
         [SerializeField] private Button exitButton;
 
         [SerializeField] private GameObject pauseUI;
-        [SerializeField] private GameObject lockUI;
         
         private InputAction _pauseAction;
 
@@ -31,11 +30,6 @@ namespace UI
         {
             if (_pauseAction.triggered)
             {
-                if (lockUI.activeInHierarchy)
-                {
-                    return;
-                }
-
                 TogglePause(!pauseUI.activeInHierarchy);
             }
         }

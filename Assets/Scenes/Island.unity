@@ -254,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C"
   hintPrefab: {fileID: 928688168}
-  hintOffset: {x: 0, y: 9.5, z: 0}
+  hintOffset: {x: 0, y: 9.1, z: 0}
   appearDuration: 0.5
   disappearDuration: 0.3
   bounceStrength: 0.2
@@ -2558,7 +2558,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 2.98, y: 1, z: -0.03}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8712061105093144199}
@@ -2596,6 +2596,7 @@ GameObject:
   - component: {fileID: 543450653567193572}
   - component: {fileID: 919132149295336287}
   - component: {fileID: 141489681}
+  - component: {fileID: 919132149295336288}
   m_Layer: 0
   m_Name: chest
   m_TagString: Chest
@@ -2624,6 +2625,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14.323637, y: 8.347021, z: 7.917254}
   m_Center: {x: 0.01797676, y: 3.6735086, z: -0.04180014}
+--- !u!114 &919132149295336288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149295336286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dfface404ac44af9d7a992780260f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputLock: {fileID: 1259468358}
 --- !u!95 &967973824681853334
 Animator:
   serializedVersion: 7
@@ -2857,45 +2871,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 434986474675735190, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 567721124288016264, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4201766648504943894, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4439051795126465011, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4439051795126465011, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4806382561671974901, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5910133992820163745, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6980200849630304705, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
-      propertyPath: inputLock
-      value: 
-      objectReference: {fileID: 1259468358}
-    - target: {fileID: 6980200849630304705, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
-      propertyPath: interactDistance
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7330000666404931586, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8180042997244707383, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
       propertyPath: m_LocalPosition.x
