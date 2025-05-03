@@ -21,14 +21,12 @@ namespace Environment
         private string _secretCode;
 
         private bool _canInput = true;
-
-        private FaderExample _fader;
+        
         private AcornSpawner _acornSpawner;
         
         private void Start()
         {
             _enterKeyAction = InputSystem.actions.FindAction("DigitInput");
-            _fader = FindAnyObjectByType<FaderExample>();
             _acornSpawner = FindAnyObjectByType<AcornSpawner>();
             List<int> acornCounts = _acornSpawner.acornCounts;
             _secretCode = $"{acornCounts[0]}{acornCounts[1]}{acornCounts[2]}{acornCounts[3]}";
@@ -85,7 +83,7 @@ namespace Environment
             yield return new WaitForSeconds(2f);
             gameObject.SetActive(false);
             GameEvents.ActivateCursor?.Invoke(false);
-            _fader.LoadScene("Runner");
+            // катсцена или анимация
         }
 
         private IEnumerator SetResultText(bool result)

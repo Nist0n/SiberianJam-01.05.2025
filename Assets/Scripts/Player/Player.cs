@@ -5,6 +5,7 @@ using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -158,7 +159,21 @@ namespace Player
                     if (hitGameObject.CompareTag("Car"))
                     {
                         // play sound, cutscene
-                        _fader.LoadScene("Island");
+                        if (SceneManager.GetActiveScene().name.Equals("Home"))
+                        {
+                            _fader.LoadScene("Island");
+                        }
+                        else
+                        {
+                            if (!_canInteractWithChest)
+                            {
+                                _fader.LoadScene("Runner");
+                            }
+                            else
+                            {
+                                // задание не выполнено, проиграть голосовое
+                            }
+                        }
                     }
                 }
             }

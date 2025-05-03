@@ -659,7 +659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &542592825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,11 +687,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &569255739 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4201766648504943894, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
-  m_PrefabInstance: {fileID: 971520649}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &569881283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1125,7 @@ PrefabInstance:
     - target: {fileID: 6980200849630304705, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
       propertyPath: inputLock
       value: 
-      objectReference: {fileID: 569255739}
+      objectReference: {fileID: 0}
     - target: {fileID: 6980200849630304705, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
       propertyPath: interactDistance
       value: 1.5
@@ -1595,7 +1590,7 @@ PrefabInstance:
     - target: {fileID: 5633554153790264237, guid: 2b9f7a8c90decf948a30b136cd921c98, type: 3}
       propertyPath: lockUI
       value: 
-      objectReference: {fileID: 569255739}
+      objectReference: {fileID: 0}
     - target: {fileID: 8500375504336345561, guid: 2b9f7a8c90decf948a30b136cd921c98, type: 3}
       propertyPath: m_Name
       value: PauseUI
