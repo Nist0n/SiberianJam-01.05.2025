@@ -2,6 +2,7 @@
 using Static_Classes;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
@@ -49,6 +50,11 @@ namespace UI
 
         private void ControlCursor()
         {
+            if (SceneManager.GetActiveScene().name.Equals("Duck Hunt"))
+            {
+                return;
+            }
+            
             if (_cursorShown)
             {
                 Cursor.lockState = CursorLockMode.None;

@@ -253,10 +253,8 @@ namespace Player
 
         private void UpdateHintUI()
         {
-            Debug.Log("UpdateHintUI");
             if (_currentTarget)
             {
-                Debug.Log("show notification");
                 _currentTarget.ShowNotification();
             }
         }
