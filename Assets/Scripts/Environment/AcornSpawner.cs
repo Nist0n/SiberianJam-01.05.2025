@@ -22,8 +22,6 @@ namespace Environment
         
         private void Awake()
         {
-            Vector3 zonePos = zone.transform.position;
-            
             foreach (var prefab in prefabs)
             {
                 int randomCount = Random.Range(0, 10);
@@ -31,27 +29,32 @@ namespace Environment
 
                 for (int j = 0; j < randomCount; j++)
                 {
-                    Debug.Log(prefab.name);
-                    
-                    Vector3 pos = new Vector3(
-                        zonePos.x + Random.Range(-randomPosDistribution, randomPosDistribution),
-                        zonePos.y,
-                        zonePos.z + Random.Range(-randomPosDistribution, randomPosDistribution)
-                    );
-                    
-                    if (Physics.CheckSphere(new Vector3(pos.x, pos.y + 0.1f, pos.z), acornRadius, layerMask))
+                    bool spawned = SpawnAcorn(prefab);
+                    while (!spawned)
                     {
-                        Debug.Log("occupied");
-                        pos = new Vector3(
-                            zonePos.x + Random.Range(-randomPosDistribution, randomPosDistribution),
-                            zonePos.y,
-                            zonePos.z + Random.Range(-randomPosDistribution, randomPosDistribution)
-                        );
+                        spawned = SpawnAcorn(prefab);
                     }
-                    
-                    Instantiate(prefab, pos, Quaternion.identity);
                 }
             }
+        }
+
+        private bool SpawnAcorn(GameObject prefab)
+        {
+            Vector3 zonePos = zone.transform.position;
+            
+            Vector3 pos = new Vector3(
+                zonePos.x + Random.Range(-randomPosDistribution, randomPosDistribution),
+                zonePos.y,
+                zonePos.z + Random.Range(-randomPosDistribution, randomPosDistribution)
+            );
+                    
+            if (Physics.CheckSphere(new Vector3(pos.x, pos.y + 0.4f, pos.z), acornRadius, layerMask))
+            {
+                return false;
+            }
+                    
+            Instantiate(prefab, pos, Quaternion.identity);
+            return true;
         }
     }
 }

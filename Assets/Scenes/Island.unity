@@ -1486,12 +1486,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zone: {fileID: 866627917}
   prefabs:
-  - {fileID: 3062878365606987877, guid: e0d633147a256f44cb524ac17cc08475, type: 3}
-  - {fileID: 8056506221399093246, guid: 6bd88fcd1780b5d4da77e5a8adb03b94, type: 3}
-  - {fileID: 8127356923139050428, guid: e777bfc753c83ab45a89e922278a5cf6, type: 3}
-  - {fileID: 8269086576663478161, guid: 359c70d11066b7d40938a45dd4f759ea, type: 3}
-  randomPosDistribution: 7
-  acornRadius: 0.1
+  - {fileID: 2130339640100862050, guid: e0d633147a256f44cb524ac17cc08475, type: 3}
+  - {fileID: 6581901287188964160, guid: 6bd88fcd1780b5d4da77e5a8adb03b94, type: 3}
+  - {fileID: 130842446384456543, guid: e777bfc753c83ab45a89e922278a5cf6, type: 3}
+  - {fileID: 5651964911814173218, guid: 359c70d11066b7d40938a45dd4f759ea, type: 3}
+  randomPosDistribution: 10
+  acornRadius: 0.3
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1576,7 +1576,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b7065e5f3832bfb499f2f956d8b5baf9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1993,7 +1993,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 418ef676b9a74dd4d8a73768c07bbd21, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2135,7 +2135,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2abf7a4b91f549c46937a2d0d8701f70, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2405,6 +2405,10 @@ PrefabInstance:
     - target: {fileID: 4439051795126465011, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4806382561671974901, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6980200849630304705, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
       propertyPath: inputLock

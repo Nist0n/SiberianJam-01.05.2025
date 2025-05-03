@@ -1119,6 +1119,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4806382561671974901, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6980200849630304705, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
       propertyPath: fader
       value: 
