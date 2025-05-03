@@ -2,6 +2,7 @@ using Settings.Audio;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
@@ -45,7 +46,14 @@ namespace UI
             cutSceneUI.SetActive(true);
             controlButtons.SetActive(false);
             AudioManager.instance.PlayAmbient("Ambient");
-            _fader.LoadScene("Home");
+            if (_fader)
+            {
+                _fader.LoadScene("Home");
+            }
+            else
+            {
+                SceneManager.LoadScene("Home");  
+            }
         }
 
         private void ToggleSettings()

@@ -88,6 +88,11 @@ namespace UI
 
         private void Update()
         {
+            if (SceneManager.GetActiveScene().name == "MainMenu")
+            {
+                return;
+            }
+            
             ControlCursor();
             if (_pauseAction.triggered)
             {
@@ -116,6 +121,7 @@ namespace UI
         private void ExitToMenu()
         {
             Time.timeScale = 1;
+            pauseUI.SetActive(false);
             _fader.LoadScene("MainMenu");
         }
     }
