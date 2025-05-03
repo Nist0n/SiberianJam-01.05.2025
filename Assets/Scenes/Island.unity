@@ -668,7 +668,7 @@ Transform:
   m_GameObject: {fileID: 866627917}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.98, y: 1.05, z: -7.1}
+  m_LocalPosition: {x: -2.79, y: 1.05, z: -0.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -686,7 +686,7 @@ GameObject:
   - component: {fileID: 997261481}
   - component: {fileID: 997261480}
   - component: {fileID: 997261479}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1492,6 +1492,9 @@ MonoBehaviour:
   - {fileID: 8269086576663478161, guid: 359c70d11066b7d40938a45dd4f759ea, type: 3}
   randomPosDistribution: 7
   acornRadius: 0.1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
   acornCounts: 
 --- !u!1 &1433336133
 GameObject:
@@ -2407,6 +2410,10 @@ PrefabInstance:
       propertyPath: inputLock
       value: 
       objectReference: {fileID: 1259468358}
+    - target: {fileID: 6980200849630304705, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
+      propertyPath: interactDistance
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8180042997244707383, guid: 0a5f673687bf26248830c92d5becc358, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.57

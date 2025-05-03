@@ -15,6 +15,9 @@ namespace Environment
 
         [SerializeField] private float acornRadius = 0.1f;
 
+        [SerializeField] private LayerMask layerMask;
+        
+        
         public List<int> acornCounts;
         
         private void Awake()
@@ -35,9 +38,10 @@ namespace Environment
                         zonePos.y,
                         zonePos.z + Random.Range(-randomPosDistribution, randomPosDistribution)
                     );
-
-                    if (Physics.CheckSphere(pos, acornRadius))
+                    
+                    if (Physics.CheckSphere(new Vector3(pos.x, pos.y + 0.1f, pos.z), acornRadius, layerMask))
                     {
+                        Debug.Log("occupied");
                         pos = new Vector3(
                             zonePos.x + Random.Range(-randomPosDistribution, randomPosDistribution),
                             zonePos.y,
