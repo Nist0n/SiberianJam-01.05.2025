@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using Environment;
+using Settings.Audio;
 using Static_Classes;
 using TMPro;
 using UI;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -172,7 +174,7 @@ namespace Player
                             }
                             else
                             {
-                                // задание не выполнено, проиграть голосовое
+                                // проиграть голосовуху
                             }
                         }
                     }

@@ -11,10 +11,13 @@ namespace Settings.Audio
 
         [SerializeField] public AudioSource sfxSource;
         [SerializeField] public AudioSource musicSource;
+        [SerializeField] private AudioSource voiceSource;
         [SerializeField] private AudioSource ambientSource;
         [SerializeField] private List<Sound> music, sounds, ambient;
         [SerializeField] private AudioResource musicAudioRandomController;
 
+        [SerializeField] private List<AudioResource> voiceLineContainers;
+        
         private void Awake()
         {
             if (instance == null)
@@ -27,7 +30,7 @@ namespace Settings.Audio
                 Destroy(gameObject);
             }
         }
-
+        
         public void PlaySfx(string soundName)
         {
             Sound s = sounds.Find(x => x.name == soundName);
@@ -85,6 +88,18 @@ namespace Settings.Audio
             }
 
             return s.clip.length;
+        }
+
+        /// <summary>
+        /// Changes antialiasing parameter in camera rendering settings.
+        /// </summary>
+        /// <param name="index">
+        ///     Номер набора реплик. 0 - Реплики при неправильном вводе пароля сундука. 1 - Реплики при игре в догонялки зайца.
+        /// </param>
+        public void PlayRandomVoiceLine(int index)
+        {
+            voiceSource.resource = voiceLineContainers[index];
+            voiceSource.Play();
         }
     }
 }

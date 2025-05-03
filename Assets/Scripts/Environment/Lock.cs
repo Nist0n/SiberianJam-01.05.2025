@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Settings.Audio;
 using Static_Classes;
 using TMPro;
 using UI;
@@ -85,7 +86,7 @@ namespace Environment
             GameEvents.ActivateCursor?.Invoke(false);
             // катсцена или анимация
         }
-
+        
         private IEnumerator SetResultText(bool result)
         {
             if (result)
@@ -95,6 +96,7 @@ namespace Environment
             else
             {
                 resultText.text = "Неверно!";
+                AudioManager.instance.PlayRandomVoiceLine(0);
             }
             
             yield return new WaitForSeconds(2f);
