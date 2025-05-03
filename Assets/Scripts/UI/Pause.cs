@@ -16,7 +16,24 @@ namespace UI
         private InputAction _pauseAction;
 
         private FaderExample _fader;
+
+        private bool _isInteracting;
         
+        private void OnEnable()
+        {
+            GameEvents.Interacting += Interacting;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.Interacting -= Interacting;
+        }
+
+        private void Interacting(bool obj)
+        {
+            _isInteracting = obj;
+        }
+
         private void Start()
         {
             continueButton.onClick.AddListener(Continue);
@@ -30,6 +47,11 @@ namespace UI
         {
             if (_pauseAction.triggered)
             {
+                if (_isInteracting)
+                {
+                    return;
+                }
+                
                 TogglePause(!pauseUI.activeInHierarchy);
             }
         }

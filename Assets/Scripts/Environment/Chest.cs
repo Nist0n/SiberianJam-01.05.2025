@@ -36,14 +36,28 @@ namespace Environment
             inputLock.SetActive(!inputLock.activeSelf);
             bool isInteracting = inputLock.activeSelf;
             GameEvents.ActivateCursor?.Invoke(inputLock.activeSelf);
+            GameEvents.Interacting?.Invoke(isInteracting);
 
             return isInteracting;
         }
 
+        public void CloseLock()
+        {
+            inputLock.SetActive(false);
+            GameEvents.ActivateCursor?.Invoke(false);
+            StartCoroutine(StopInteracting());
+        }
+        
         private IEnumerator AnimateChest()
         {
             yield return new WaitForSeconds(2f);
             _animator.Play("open");
+        }
+
+        private IEnumerator StopInteracting()
+        {
+            yield return null;
+            GameEvents.Interacting?.Invoke(false);
         }
     }
 }

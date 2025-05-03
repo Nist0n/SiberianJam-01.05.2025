@@ -92,7 +92,7 @@ namespace Player
         private void Update()
         {
             ControlCursor();
-            Interact();
+            ControlInput();
             
             if (_isInteracting)
             {
@@ -137,7 +137,7 @@ namespace Player
             _cursorShown = activated;
         }
         
-        private void Interact()
+        private void ControlInput()
         {
             if (_interactAction.WasPressedThisFrame())
             {
@@ -176,6 +176,16 @@ namespace Player
                             }
                         }
                     }
+                }
+            }
+
+            if (_closeAction.WasPressedThisFrame())
+            {
+                if (_isInteracting)
+                {
+                    Chest chest = FindAnyObjectByType<Chest>();
+                    chest.CloseLock();
+                    _isInteracting = false;
                 }
             }
         }

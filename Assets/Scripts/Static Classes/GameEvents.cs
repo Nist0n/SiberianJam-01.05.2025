@@ -7,5 +7,6 @@ namespace Static_Classes
         public static Action ChestOpened;
         public static Action DuckDefeated;
         public static Action<bool> ActivateCursor;
+        public static Action<bool> Interacting;
     }
 }
