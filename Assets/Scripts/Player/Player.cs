@@ -54,19 +54,15 @@ namespace Player
         private Camera _mainCamera;
 
         private bool _canInteractWithChest = true;
-
-        private bool _cursorShown;
         
         private void OnEnable()
         {
             GameEvents.ChestOpened += ChestOpened;
-            GameEvents.ActivateCursor += CursorStateChanged;
         }
 
         private void OnDisable()
         {
             GameEvents.ChestOpened -= ChestOpened;
-            GameEvents.ActivateCursor -= CursorStateChanged;
         }
 
         private void Start()
@@ -93,7 +89,6 @@ namespace Player
 
         private void Update()
         {
-            ControlCursor();
             ControlInput();
             
             if (_isInteracting)
@@ -118,25 +113,6 @@ namespace Player
         {
             _canInteractWithChest = false;
             StartCoroutine(StopInteracting());
-        }
-
-        private void ControlCursor()
-        {
-            if (_cursorShown)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-        }
-
-        private void CursorStateChanged(bool activated)
-        {
-            _cursorShown = activated;
         }
         
         private void ControlInput()
@@ -277,11 +253,6 @@ namespace Player
 
         private void UpdateHintUI()
         {
-            if (_cursorShown)
-            {
-                return;
-            }
-            
             if (_currentTarget)
             {
                 _currentTarget.ShowNotification();

@@ -92,6 +92,7 @@ namespace Environment
             if (result)
             {
                 resultText.text = "Верно!";
+                GameEvents.Interacting?.Invoke(false);
             }
             else
             {
