@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="25d390e1-a9c0-4e25-9227-f0ead1386c4c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Fonts/JoystixMonospace-Regular SDF.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Fonts/JoystixMonospace-Regular SDF.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Fonts/JoystixMonospace-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Fonts/JoystixMonospace-Regular.ttf.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest/Correct password.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest/Correct password.mp3.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest/Incorrect password.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest/Incorrect password.mp3.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest/Print the password 1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest/Print the password 1.mp3.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest/Print the password 2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest/Print the password 2.mp3.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest/Print the password 3.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Chest/Print the password 3.mp3.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Garage door.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Garage door.mp3.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/UI.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Duck Hunt.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Duck Hunt.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Island.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Island.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Pause.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Pause.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/Help tip.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/UI/Help tip.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/Help tip.mp3.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/UI/Help tip.mp3.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/UI buttons.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/UI/UI buttons.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/UI buttons.mp3.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/UI/UI buttons.mp3.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/keyboard.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/UI/keyboard.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/keyboard.mp3.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/UI/keyboard.mp3.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/sprite/CloudyCrown_02_Evening/CloudyCrown_Evening.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/sprite/CloudyCrown_02_Evening/CloudyCrown_Evening.mat" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2wbaoMmWQfCrZeEizpKqxyFeB12" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging main"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="25d390e1-a9c0-4e25-9227-f0ead1386c4c" name="Changes" comment="" />
+      <created>1746312901426</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746312901426</updated>
+    </task>
+    <servers />
+  </component>
+</project>
