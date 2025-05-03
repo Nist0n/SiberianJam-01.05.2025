@@ -1768,6 +1768,11 @@ PrefabInstance:
       propertyPath: hintOffset.y
       value: 1.9
       objectReference: {fileID: 0}
+    - target: {fileID: 5979260882880410632, guid: de498e7bcb6374a40a0f10bf1777748f, type: 3}
+      propertyPath: interactionText
+      value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C\u0441\u044F
+        \u0432 \u043F\u0443\u0442\u044C (E)"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2222,6 +2227,10 @@ PrefabInstance:
     - target: {fileID: 409149740515768617, guid: c06c242a8236bfd4ab1f793e6d6a4b9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162188934543602263, guid: c06c242a8236bfd4ab1f793e6d6a4b9a, type: 3}
+      propertyPath: interactionText
+      value: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C (E)"
       objectReference: {fileID: 0}
     - target: {fileID: 7549924979683475229, guid: c06c242a8236bfd4ab1f793e6d6a4b9a, type: 3}
       propertyPath: inputLock

@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionText: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C\u0441\u044F
-    \u0432 \u043F\u0443\u0442\u044C"
+    \u0432 \u043F\u0443\u0442\u044C (E)"
   hintPrefab: {fileID: 3662526316233555114}
   hintOffset: {x: 0, y: 1.9, z: 0}
   appearDuration: 0.5
