@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8774363170399103482}
   - component: {fileID: 1944268631221548319}
   - component: {fileID: 583428904298417919}
-  - component: {fileID: -5393792112475908589}
+  - component: {fileID: -2713851411696470908}
   m_Layer: 7
   m_Name: Red acorn
   m_TagString: Untagged
@@ -88,8 +88,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-5393792112475908589
-MeshCollider:
+--- !u!135 &-2713851411696470908
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,7 +106,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2232952877369940510, guid: d840cb74abbcfcd45bb3a58a58a8d750, type: 3}
+  serializedVersion: 3
+  m_Radius: 8.196191
+  m_Center: {x: 0.0000019073486, y: 0.0000011920929, z: 6.685009}

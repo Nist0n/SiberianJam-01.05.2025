@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7920628281525010219}
   - component: {fileID: 8097193834419311269}
   - component: {fileID: 8222415723110499910}
-  - component: {fileID: 431736598696393263}
+  - component: {fileID: 7938370667469713154}
   m_Layer: 7
   m_Name: Yellow acorn
   m_TagString: Untagged
@@ -88,8 +88,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &431736598696393263
-MeshCollider:
+--- !u!135 &7938370667469713154
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,7 +106,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2232952877369940510, guid: d840cb74abbcfcd45bb3a58a58a8d750, type: 3}
+  serializedVersion: 3
+  m_Radius: 8.196191
+  m_Center: {x: 0.0000019073486, y: 0.0000011920929, z: 6.685009}
