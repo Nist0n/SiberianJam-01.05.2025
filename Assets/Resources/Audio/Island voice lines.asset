@@ -6,8 +6,8 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u0410\u0410\u0410\u0410\u0410 \u0434\u0430 \u043A\u0442\u043E_{6166333778945258010}"
-  m_AudioClip: {fileID: 8300000, guid: 0e8652bdb881e764da2657ea625a8587, type: 3}
+  m_Name: AAA da kto eto pridumal_{6166333778945258010}
+  m_AudioClip: {fileID: 8300000, guid: eca7c6262d0d48b4fac76f70cd9c8f5d, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1307931743 &6418180475301049370
