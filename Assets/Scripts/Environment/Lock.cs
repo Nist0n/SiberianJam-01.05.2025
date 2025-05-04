@@ -27,6 +27,7 @@ namespace Environment
         
         private void Start()
         {
+            AudioManager.instance.PlayMusic("IslandMusic");
             _enterKeyAction = InputSystem.actions.FindAction("DigitInput");
             _acornSpawner = FindAnyObjectByType<AcornSpawner>();
             List<int> acornCounts = _acornSpawner.acornCounts;
