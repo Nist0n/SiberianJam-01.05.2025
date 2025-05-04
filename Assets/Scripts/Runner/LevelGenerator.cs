@@ -9,11 +9,15 @@ namespace Runner
         public GameObject Tile2;
         public GameObject StartTile;
 
+        private float _timer;
+        private float _timeToVoice;
+
         private float Index = 0;
 
         private void Start()
         {
-            AudioManager.instance.PlayAmbient("helicopter");
+            SetRandomTime();
+            AudioManager.instance.PlayAmbient("Car loop");
             //create 5 tile first game
             GameObject StartPlane1 = Instantiate(StartTile, transform);
             StartPlane1.transform.position = new Vector3(7, 0, 0);
@@ -65,6 +69,22 @@ namespace Runner
 
                 Index = Index + 15.95f;
             }
+
+            if (_timeToVoice >= _timer)
+            {
+                _timer += Time.deltaTime;
+            }
+            else
+            {
+                _timer = 0;
+                SetRandomTime();
+                AudioManager.instance.PlayRandomVoiceLine(1);
+            }
+        }
+
+        private void SetRandomTime()
+        {
+            _timeToVoice = Random.Range(10, 20);
         }
     }
 }
