@@ -5,9 +5,11 @@ using Settings.Audio;
 using Static_Classes;
 using TMPro;
 using UI;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 namespace Player
@@ -19,8 +21,7 @@ namespace Player
         [SerializeField] private float mouseSensitivity = 10;
         [SerializeField] private float jumpForce = 5;
         [SerializeField] private float sprintMultiplier = 2;
-        // [SerializeField] private AudioSource steps;
-        // [SerializeField] private AudioSource run;
+        [SerializeField] private CinemachineCamera playerCamera;
 
         [SerializeField] private float distanceToGround = 1.1f;
         [SerializeField] private float interactDistance = 1f;
@@ -57,6 +58,8 @@ namespace Player
 
         private bool _canInteractWithChest = true;
         
+        private PlayableDirector _cutsceneDirector;
+        
         private void OnEnable()
         {
             GameEvents.ChestOpened += ChestOpened;
@@ -71,12 +74,23 @@ namespace Player
         {
             _fader = FindAnyObjectByType<FaderExample>();
             
+            _cutsceneDirector = FindAnyObjectByType<PlayableDirector>();
+            
             if (PlayerPrefs.HasKey("Sensitivity"))
             {
                 mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
             }
             
             _characterController = GetComponent<CharacterController>();
+            
+            if (playerCamera)
+            {
+                _cameraTransform = playerCamera.transform;
+            }
+            else
+            {
+                _cameraTransform = Camera.main.transform;
+            }
 
             _mainCamera = Camera.main;
             _cameraTransform = _mainCamera.transform;
@@ -142,7 +156,7 @@ namespace Player
                         // play sound, cutscene
                         if (SceneManager.GetActiveScene().name.Equals("Home"))
                         {
-                            _fader.LoadScene("Island");
+                            _cutsceneDirector.Play();
                         }
                         else
                         {
@@ -218,7 +232,7 @@ namespace Player
             if (_jumpAction.IsPressed() && _grounded)
             {
                 _grounded = false;
-                // AudioManager.instance.PlaySfx("PlayerJump");
+                AudioManager.instance.PlaySfx("PlayerJump");
                 _velocity.y = jumpForce;
             }
 
@@ -265,6 +279,11 @@ namespace Player
         {
             yield return new WaitForSeconds(2f);
             _isInteracting = false;
+        }
+        
+        public void FadeToNewScene(string scene)
+        {
+            _fader.LoadScene(scene);
         }
     }
 }

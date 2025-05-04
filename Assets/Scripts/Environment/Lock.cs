@@ -45,6 +45,7 @@ namespace Environment
             
             if (_enterKeyAction.WasPressedThisFrame())
             {
+                AudioManager.instance.PlaySfx("Print the password");
                 InputControl inputControl = _enterKeyAction.activeControl;
                 string character = inputControl.displayName;
                 Debug.Log(character);
@@ -71,6 +72,7 @@ namespace Environment
             if (result)
             {
                 GameEvents.ChestOpened?.Invoke();
+                AudioManager.instance.PlaySfx("Correct password");
                 StartCoroutine(OnLockOpened());
                 Debug.Log("Key is right!");
             }
@@ -97,6 +99,7 @@ namespace Environment
             else
             {
                 resultText.text = "Неверно!";
+                AudioManager.instance.PlaySfx("Incorrect password");
                 AudioManager.instance.PlayRandomVoiceLine(0);
             }
             
