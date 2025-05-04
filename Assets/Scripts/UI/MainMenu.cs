@@ -1,4 +1,5 @@
 using Settings.Audio;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -33,7 +34,7 @@ namespace UI
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            AudioManager.instance.PlayMusic("MainMenu");
+            StartCoroutine(PlayMenuMusic());
             AudioManager.instance.PlayAmbient("AmbientMenu");
             settingsUI.SetActive(false);
             _fader = FindAnyObjectByType<FaderExample>();
@@ -74,6 +75,14 @@ namespace UI
             #else
                 Application.Quit();
             #endif
+        }
+
+        private IEnumerator PlayMenuMusic()
+        {
+            AudioManager.instance.PlayMusic("MainMenu");
+            float clipLength = AudioManager.instance.GetMusicClipLength("MainMenu");
+            yield return new WaitForSeconds(clipLength);
+            AudioManager.instance.PlayMusic("MainMenuLoop");
         }
     }
 }
