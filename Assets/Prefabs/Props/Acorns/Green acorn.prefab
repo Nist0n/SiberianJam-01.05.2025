@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7949202825582087411}
   - component: {fileID: 5891871820428026142}
   - component: {fileID: 8602214735448428600}
+  - component: {fileID: 2141064380738633292}
   m_Layer: 7
   m_Name: Green acorn
   m_TagString: Untagged
@@ -109,3 +110,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 8.196191
   m_Center: {x: 0.0000019073486, y: 0.0000011920929, z: 6.685009}
+--- !u!114 &2141064380738633292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581901287188964160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167593aefdb843c0a95a497794f0f4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

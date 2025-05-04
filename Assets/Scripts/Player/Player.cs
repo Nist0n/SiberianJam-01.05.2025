@@ -20,7 +20,6 @@ namespace Player
         [SerializeField] private float walkSpeed = 5;
         [SerializeField] private float mouseSensitivity = 10;
         [SerializeField] private float jumpForce = 5;
-        [SerializeField] private float sprintMultiplier = 2;
         [SerializeField] private CinemachineCamera playerCamera;
 
         [SerializeField] private float distanceToGround = 1.1f;

@@ -47,9 +47,24 @@ namespace Environment
                 zonePos.y,
                 zonePos.z + Random.Range(-randomPosDistribution, randomPosDistribution)
             );
-                    
-            if (Physics.CheckSphere(new Vector3(pos.x, pos.y + 0.4f, pos.z), acornRadius, layerMask))
+
+            if (Physics.Raycast(pos, Vector3.down, out RaycastHit hit))
             {
+                pos.y = hit.point.y + 0.05f;
+            }
+            else
+            {
+                return false;
+            }
+            
+            if (Physics.CheckSphere(new Vector3(pos.x, pos.y + 0.4f, pos.z), acornRadius))
+            {
+                // Collider[] colliders = Physics.OverlapSphere(new Vector3(pos.x, pos.y + 0.3f, pos.z), acornRadius);
+                // foreach (Collider coll in colliders)
+                // {
+                //     Debug.Log("colliding " + coll.gameObject.name);
+                //     Debug.Log(coll.gameObject.transform.position);
+                // }
                 return false;
             }
                     
