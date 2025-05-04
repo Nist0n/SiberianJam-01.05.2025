@@ -38,6 +38,7 @@ namespace UI
         {
             yield return new WaitForSeconds(2f);
             ShowNotification();
+            AudioManager.instance.PlaySfx("Хэй это я");
             StartCoroutine(ShowSeriesOfText(phrases));
             yield return new WaitForSeconds(30.5f);
             HideNotification();
