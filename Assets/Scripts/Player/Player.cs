@@ -27,7 +27,6 @@ namespace Player
         [SerializeField] private float interactDistance = 1f;
         [SerializeField] private AudioSource steps;
         
-
         private FaderExample _fader;
         
         private const float Gravity = -9.81f;
@@ -93,7 +92,7 @@ namespace Player
             }
 
             _mainCamera = Camera.main;
-            _cameraTransform = _mainCamera.transform;
+            // _cameraTransform = _mainCamera.transform;
 
             _moveAction = InputSystem.actions.FindAction("Move");
             _lookAction = InputSystem.actions.FindAction("Look");
@@ -199,18 +198,8 @@ namespace Player
         private void Move()
         {
             Vector2 moveValue = _moveAction.ReadValue<Vector2>();
-            if (_sprintAction.IsPressed() && moveValue is { y: > 0, x: 0 })
-            {
-                _moveSpeed = sprintMultiplier * walkSpeed;
-                // run.enabled = true;
-                steps.enabled = false;
-            }
-            else
-            {
-                _moveSpeed = walkSpeed;
-                // run.enabled = false;
-                steps.enabled = true;
-            }
+            _moveSpeed = walkSpeed;
+            steps.enabled = true;
 
             if (_characterController.isGrounded && _velocity.y < 0)
             {
@@ -219,7 +208,6 @@ namespace Player
 
             if (moveValue is { x: 0, y: 0 })
             {
-                // run.enabled = false;
                 steps.enabled = false;
             }
 
@@ -229,7 +217,7 @@ namespace Player
 
             _grounded = Physics.Raycast(transform.position, Vector3.down, distanceToGround);
 
-            if (_jumpAction.IsPressed() && _grounded)
+            if (_jumpAction.WasPressedThisFrame() && _grounded)
             {
                 _grounded = false;
                 AudioManager.instance.PlaySfx("PlayerJump");
