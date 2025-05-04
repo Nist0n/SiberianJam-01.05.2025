@@ -6,8 +6,8 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u0412\u043E\u0442 \u0436\u0435 \u0431\u043B\u0438\u043D_{-5712666090821820338}"
-  m_AudioClip: {fileID: 8300000, guid: e9c2b748cfd8e1040b077841bd8eaa29, type: 3}
+  m_Name: Vot zhe blin_{-5712666090821820338}
+  m_AudioClip: {fileID: 8300000, guid: 4931cf3e43317a3449c4f5f0d9964c73, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1307931743 &6418180475301049370
@@ -43,7 +43,7 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u0421 \u043A\u0430\u043A\u0438\u0445 \u044D\u0442\u043E \u043F\u043E\u0440_{7256362470571934278}"
-  m_AudioClip: {fileID: 8300000, guid: 1a81ba2d47c44174a9d49f60a6e7aec1, type: 3}
+  m_Name: S kakih por eto_{7256362470571934278}
+  m_AudioClip: {fileID: 8300000, guid: 761ef72205c1cf54cb4f6c7de3047ad0, type: 3}
   m_Volume: 0
   m_Enabled: 1
