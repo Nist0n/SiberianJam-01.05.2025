@@ -74,6 +74,8 @@ namespace Duck
             }
             else
             {
+                float angle = Vector3.Angle(transform.position, _goal);
+                transform.Rotate(0, -angle, 0);
                 transform.position += (_goal - transform.position).normalized * (Time.deltaTime * speed);
             }
         }
