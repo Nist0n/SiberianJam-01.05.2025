@@ -26,7 +26,7 @@ namespace Duck
         private readonly float _screenZMax = 85;
         private readonly float _screenZMin = -90;
         private readonly float _screenYMax = 90;
-        private readonly float _screenYMin = 20;
+        private readonly float _screenYMin = 30;
         
         private Animator _animator;
         

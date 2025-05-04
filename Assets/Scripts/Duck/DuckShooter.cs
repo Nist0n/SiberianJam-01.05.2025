@@ -34,6 +34,7 @@ namespace Duck
         {
             AudioManager.instance.PlaySfx("Quack");
             AudioManager.instance.PlaySfx("Надо сбить");
+            AudioManager.instance.PlayAmbient("Start a vehicle");
             _shootAction = InputSystem.actions.FindAction("Attack");
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.None;

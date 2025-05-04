@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Settings.Audio;
 using Static_Classes;
 using UnityEngine;
 
@@ -54,7 +55,9 @@ namespace Environment
             yield return new WaitForSeconds(2f);
             _animator.Play("open");
             rabbit.SetActive(true);
-            yield return new WaitForSeconds(15f);
+            yield return new WaitForSeconds(6f);
+            AudioManager.instance.PlaySfx("Нужно срочно заводить");
+            yield return new WaitForSeconds(9f);
             rabbit.SetActive(false);
         }
 
