@@ -8,6 +8,7 @@ namespace Environment
     public class Chest : MonoBehaviour
     {
         [SerializeField] private GameObject inputLock;
+        [SerializeField] private GameObject rabbit;
         
         private Animator _animator;
 
@@ -52,6 +53,9 @@ namespace Environment
         {
             yield return new WaitForSeconds(2f);
             _animator.Play("open");
+            rabbit.SetActive(true);
+            yield return new WaitForSeconds(15f);
+            rabbit.SetActive(false);
         }
 
         private IEnumerator StopInteracting()
