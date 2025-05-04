@@ -164,7 +164,7 @@ namespace Player
                             }
                             else
                             {
-                                // проиграть голосовуху
+                                AudioManager.instance.PlaySfx("Not over");
                             }
                         }
                     }
