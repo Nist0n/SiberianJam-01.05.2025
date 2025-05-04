@@ -102,6 +102,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f69a87755cfa0274880a2aa3f6a5e6ed, type: 3}
   - name: Step 2
     clip: {fileID: 8300000, guid: f99d23e6ad4b5774e866f44e2a988bf0, type: 3}
+  - name: Rabbit
+    clip: {fileID: 8300000, guid: 1b7dec263ddf59c479d32dffffbfc6c7, type: 3}
   ambient:
   - name: helicopter
     clip: {fileID: 8300000, guid: 1b7dec263ddf59c479d32dffffbfc6c7, type: 3}
