@@ -4994,6 +4994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d7eabb1e992134594f6b3107876b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  car: {fileID: 1759697212}
 --- !u!1 &336501356
 GameObject:
   m_ObjectHideFlags: 0
@@ -20815,6 +20816,11 @@ PrefabInstance:
       addedObject: {fileID: 1465214414}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ee8027dcc874364bb27f507bf8cc3b4, type: 3}
+--- !u!1 &1759697212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 857753904182590770, guid: 7ee8027dcc874364bb27f507bf8cc3b4, type: 3}
+  m_PrefabInstance: {fileID: 1759697211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1868191487
 GameObject:
   m_ObjectHideFlags: 0

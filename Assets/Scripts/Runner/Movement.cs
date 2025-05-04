@@ -8,9 +8,18 @@ namespace Runner
         private bool _lane1 = false, _lane2 = true, _lane3 = false;
         private bool _up = false;
 
+        [SerializeField] private GameObject car;
+
+        private Animator _carAnimator;
+        
         private void Start()
         {
             _player = GetComponent<Transform>();
+            _carAnimator = car.GetComponent<Animator>();
+            _carAnimator.Play("leftback");
+            _carAnimator.Play("rightback");
+            _carAnimator.Play("frontright");
+            _carAnimator.Play("frontleft");
         }
 
         private void Update()
