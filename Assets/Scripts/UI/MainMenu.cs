@@ -32,10 +32,12 @@ namespace UI
 
         private void Start()
         {
+            AudioManager.instance.ambientSource.Stop();
+            AudioManager.instance.sfxSource.Stop();
+            AudioManager.instance.musicSource.Stop();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             StartCoroutine(PlayMenuMusic());
-            AudioManager.instance.PlayAmbient("AmbientMenu");
             settingsUI.SetActive(false);
             _fader = FindAnyObjectByType<FaderExample>();
         }
