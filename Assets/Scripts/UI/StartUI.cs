@@ -39,6 +39,9 @@ namespace UI
             yield return new WaitForSeconds(2f);
             ShowNotification();
             StartCoroutine(ShowSeriesOfText(phrases));
+            yield return new WaitForSeconds(30.5f);
+            HideNotification();
+            AudioManager.instance.PlaySfx("Ну и дела");
         }
     
         private void ShowNotification()
