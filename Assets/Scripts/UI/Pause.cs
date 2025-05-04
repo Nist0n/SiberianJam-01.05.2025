@@ -1,4 +1,5 @@
 ﻿using System;
+using Settings.Audio;
 using Static_Classes;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -115,6 +116,7 @@ namespace UI
         private void Continue()
         {
             Debug.Log("Continue");
+            AudioManager.instance.PlaySfx("UI buttons");
             TogglePause(false);
         }
 
@@ -122,6 +124,7 @@ namespace UI
         {
             Time.timeScale = 1;
             pauseUI.SetActive(false);
+            AudioManager.instance.PlaySfx("UI buttons");
             _fader.LoadScene("MainMenu");
         }
     }

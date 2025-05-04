@@ -24,6 +24,8 @@ namespace Player
 
         [SerializeField] private float distanceToGround = 1.1f;
         [SerializeField] private float interactDistance = 1f;
+        [SerializeField] private AudioSource steps;
+        
 
         private FaderExample _fader;
         
@@ -187,13 +189,13 @@ namespace Player
             {
                 _moveSpeed = sprintMultiplier * walkSpeed;
                 // run.enabled = true;
-                // steps.enabled = false;
+                steps.enabled = false;
             }
             else
             {
                 _moveSpeed = walkSpeed;
                 // run.enabled = false;
-                // steps.enabled = true;
+                steps.enabled = true;
             }
 
             if (_characterController.isGrounded && _velocity.y < 0)
@@ -204,7 +206,7 @@ namespace Player
             if (moveValue is { x: 0, y: 0 })
             {
                 // run.enabled = false;
-                // steps.enabled = false;
+                steps.enabled = false;
             }
 
             Vector3 move = transform.right * moveValue.x + transform.forward * moveValue.y;

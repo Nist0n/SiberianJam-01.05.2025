@@ -41,7 +41,7 @@ namespace UI
 
         private void PlayGame()
         {
-            AudioManager.instance.PlaySfx("Click");
+            AudioManager.instance.PlaySfx("UI buttons");
             AudioManager.instance.musicSource.Stop();
             // Добавить метод для замедленного приближения камеры к автомату (корутину мб)
             cutSceneUI.SetActive(true);
@@ -52,7 +52,7 @@ namespace UI
 
         private void ToggleSettings()
         {
-            AudioManager.instance.PlaySfx("Click");
+            AudioManager.instance.PlaySfx("UI buttons");
             controlButtons.SetActive(!controlButtons.activeSelf);
             settingsUI.SetActive(!settingsUI.activeSelf);
             
@@ -68,7 +68,7 @@ namespace UI
 
         private void ExitGame()
         {
-            AudioManager.instance.PlaySfx("Click");
+            AudioManager.instance.PlaySfx("UI buttons");
             #if UNITY_EDITOR
                 EditorApplication.isPlaying = false;
             #else

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Settings.Audio;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -38,8 +39,6 @@ namespace UI
             yield return new WaitForSeconds(2f);
             ShowNotification();
             StartCoroutine(ShowSeriesOfText(phrases));
-            // yield return new WaitForSeconds(.);
-            // HideNotification();
         }
     
         private void ShowNotification()
