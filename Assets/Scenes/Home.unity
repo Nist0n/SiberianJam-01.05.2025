@@ -747,6 +747,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 246a07ccb0daba54e991149da65ebf62, type: 3}
+--- !u!114 &362222767 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4117910388053159093, guid: 246a07ccb0daba54e991149da65ebf62, type: 3}
+  m_PrefabInstance: {fileID: 362222766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d688b3c4fe41694190946094cb40b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &424863500 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5126176294976005425, guid: 40719687b142e3047a6e060227f869b2, type: 3}
@@ -3916,6 +3927,30 @@ MonoBehaviour:
             m_StringArgument: Open door
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 362222767}
+          m_TargetAssemblyTypeName: Settings.Audio.AudioManager, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Start a vehicle
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 362222767}
+          m_TargetAssemblyTypeName: Settings.Audio.AudioManager, Assembly-CSharp
+          m_MethodName: PlaySfx
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Garage door
+            m_BoolArgument: 0
+          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1478078515}
@@ -3928,6 +3963,18 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: close door
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 362222767}
+          m_TargetAssemblyTypeName: Settings.Audio.AudioManager, Assembly-CSharp
+          m_MethodName: PlayAmbient
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Car loop
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
