@@ -702,6 +702,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4117910388053159093, guid: 246a07ccb0daba54e991149da65ebf62, type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9523cf67c67b43849afe98ca8d208ad9, type: 3}
     - target: {fileID: 8382585116806453342, guid: 246a07ccb0daba54e991149da65ebf62, type: 3}
       propertyPath: m_LocalPosition.x
       value: 546.5013
@@ -5626,7 +5630,6 @@ MonoBehaviour:
   walkSpeed: 5
   mouseSensitivity: 7
   jumpForce: 3
-  sprintMultiplier: 2
   playerCamera: {fileID: 1140904249}
   distanceToGround: 1.2
   interactDistance: 1.5

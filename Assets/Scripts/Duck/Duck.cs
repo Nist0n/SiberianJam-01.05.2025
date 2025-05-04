@@ -28,6 +28,8 @@ namespace Duck
         private readonly float _screenYMax = 90;
         private readonly float _screenYMin = 20;
         
+        private Animator _animator;
+        
         private void OnEnable()
         {
             GameEvents.DuckDefeated += DuckDefeated;
@@ -45,6 +47,9 @@ namespace Duck
 
         private void Start()
         {
+            _animator = GetComponent<Animator>();
+            // _animator.Play("right");
+            // _animator.Play("left");
             healthbar.maxValue = health;
             healthbar.value = health;
 
@@ -93,6 +98,7 @@ namespace Duck
         private IEnumerator DuckDied()
         {
             // possibly wait for death animation
+            _animator.enabled = false;
             yield return new WaitForSeconds(1f);
             Instantiate(eggPrefab, transform.position, Quaternion.identity);
             healthbar.gameObject.SetActive(false);
