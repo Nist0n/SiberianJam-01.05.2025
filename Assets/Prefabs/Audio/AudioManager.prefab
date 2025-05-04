@@ -57,6 +57,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: dbdd4d84a625ebd43b27250fafcb9b73, type: 3}
   - name: MainMenuLoop
     clip: {fileID: 8300000, guid: e2cd293c0d3b61f40bcda000ba6e0b23, type: 3}
+  - name: IslandMusic
+    clip: {fileID: 8300000, guid: 444f565a91d5e9d4e905dd20a6aba9ff, type: 3}
   sounds:
   - name: "\u0412\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435"
     clip: {fileID: 8300000, guid: f6d3ffa13192a154ca7af3d12189bbf0, type: 3}
@@ -103,6 +105,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1b7dec263ddf59c479d32dffffbfc6c7, type: 3}
   - name: Car loop
     clip: {fileID: 8300000, guid: f67af80f0f93fa54693d42f20fd73d8b, type: 3}
+  - name: IslandAmbient
+    clip: {fileID: 8300000, guid: efa2dc866346836428325c2e2488bc8f, type: 3}
   musicAudioRandomController: {fileID: 6418180475301049370, guid: c136421687cab6e47bed0837c5560d5d, type: 2}
   voiceLineContainers:
   - {fileID: 6418180475301049370, guid: 7b76b8207584a9b40a7701c78dedb833, type: 2}
