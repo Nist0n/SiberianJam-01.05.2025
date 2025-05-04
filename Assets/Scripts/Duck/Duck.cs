@@ -98,7 +98,7 @@ namespace Duck
             healthbar.gameObject.SetActive(false);
             Destroy(gameObject);
             
-            _fader.LoadScene("MainMenu");
+            _fader.LoadScene("Ending");
         }
     }
 }

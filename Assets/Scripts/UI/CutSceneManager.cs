@@ -109,11 +109,25 @@ namespace UI
             gameObject.SetActive(false);
             if (_fader)
             {
-                _fader.LoadScene("Home");
+                if (SceneManager.GetActiveScene().name == "Ending")
+                {
+                    _fader.LoadScene("MainMenu");
+                }
+                else
+                {
+                    _fader.LoadScene("Home");
+                }
             }
             else
             {
-                SceneManager.LoadScene("Home");  
+                if (SceneManager.GetActiveScene().name == "Ending")
+                {
+                    SceneManager.LoadScene("MainMenu");
+                }
+                else
+                {
+                    SceneManager.LoadScene("Home");  
+                }
             }
         }
     }
