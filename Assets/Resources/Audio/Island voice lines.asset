@@ -43,7 +43,7 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u0427\u0451\u0440\u0442 \u043D\u0435\u0432\u0435\u0440\u043D\u043E_{6597690467714281848}"
-  m_AudioClip: {fileID: 8300000, guid: 1e5488dd69ff00c4abd80883aae60d8c, type: 3}
+  m_Name: Chert neveruyushii_{6597690467714281848}
+  m_AudioClip: {fileID: 8300000, guid: 9a4b1563c7266f14e93237bc6f269944, type: 3}
   m_Volume: 0
   m_Enabled: 1
