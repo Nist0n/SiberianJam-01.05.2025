@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Settings.Audio;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -31,6 +32,8 @@ namespace Duck
         
         private void Start()
         {
+            AudioManager.instance.PlaySfx("Quack");
+            AudioManager.instance.PlaySfx("Надо сбить");
             _shootAction = InputSystem.actions.FindAction("Attack");
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.None;
@@ -72,6 +75,7 @@ namespace Duck
             _canShoot = false;
             _shooting = true;
             Debug.Log("Shot");
+            AudioManager.instance.PlaySfx("Plasma");
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             
             yield return new WaitForSeconds(shotDelay);
@@ -87,6 +91,8 @@ namespace Duck
                 if (hit.collider.gameObject.CompareTag("Duck"))
                 {
                     Debug.Log("Duck hit");
+                    AudioManager.instance.PlaySfx("Есть попал");
+                    AudioManager.instance.PlaySfx("Quack");
                     Duck duck = hit.collider.gameObject.GetComponent<Duck>();
                     duck.ReceiveDamage(damage);
                 }
